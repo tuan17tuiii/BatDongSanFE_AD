@@ -69,7 +69,7 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" [routerLink]="['/admin/basic_elements']">
           <span class="menu-icon">
             <i class="mdi mdi-playlist-play"></i>
           </span>
@@ -77,15 +77,25 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/tables/basic-table.html">
+        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
           </span>
-          <span class="menu-title">Tables</span>
+          <span class="menu-title">Table</span>
+          <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="auth">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/basic_table']" > Role </a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> BDS </a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> User </a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> ADD </a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+          </ul>
+        </div>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" [routerLink]="['/admin/chartjs']">
           <span class="menu-icon">
             <i class="mdi mdi-chart-bar"></i>
           </span>
@@ -93,7 +103,7 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/icons/mdi.html">
+        <a class="nav-link" [routerLink]="['/admin/icon']">
           <span class="menu-icon">
             <i class="mdi mdi-contacts"></i>
           </span>
