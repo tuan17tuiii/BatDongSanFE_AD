@@ -37,8 +37,11 @@ export const routes: Routes = [
     }, 
 
     {
-        path: "login",
+        path: "",
+        component: Logincomponet
+    },
+    {
+        path: "Login",
         component: Logincomponet
     }
-
 ];
