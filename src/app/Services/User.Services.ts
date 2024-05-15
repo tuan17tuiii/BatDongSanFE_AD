@@ -21,4 +21,12 @@ export class UserServices{
     async Login(account: User){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/Login', account));
     }
+
+    async Verify(securityCode: string, username: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/Verify/' + securityCode + '/' + username));
+    }
+
+    async findByUsername(username: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findByUsername/' + username));
+    }
 }

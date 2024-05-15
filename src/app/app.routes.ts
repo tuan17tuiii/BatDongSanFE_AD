@@ -8,6 +8,9 @@ import { Basictablecomponent } from './basic_table.component';
 import { LayoutComponent } from './layout.component';
 import { Basic_elementscomponent } from './basic_elements.componet';
 import { MidComponent } from './mdi.component';
+import { register } from 'node:module';
+import { RegisterComponent } from './register.component';
+import { VerifyWebComponent } from './VerifyWeb.component';
 
 export const routes: Routes = [
     {
@@ -32,16 +35,18 @@ export const routes: Routes = [
                 path: 'icon',
                 component: MidComponent
             },
-
         ]
     }, 
-
     {
         path: "",
         component: Logincomponet
     },
     {
-        path: "Login",
-        component: Logincomponet
-    }
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
+        path: 'verify',
+        component: VerifyWebComponent
+    },
 ];

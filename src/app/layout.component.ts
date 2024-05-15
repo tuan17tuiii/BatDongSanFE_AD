@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink],
+  imports: [RouterOutlet,RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './layout.component.html',
   styleUrl: './app.component.css'
 })
-export class LayoutComponent {
-  title = 'BatDongSanFE_AD';
+export class LayoutComponent implements OnInit {
+  
+  constructor(private router: Router){}
+
+  ngOnInit(){
+    
+  }
+
+  Logout(){
+    sessionStorage.removeItem('username');
+    this.router.navigate(['']);
+  }
 }

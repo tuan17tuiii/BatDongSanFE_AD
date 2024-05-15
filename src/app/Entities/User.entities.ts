@@ -5,7 +5,7 @@ export class User{
     name: string;
     email: string;
     phone: string;
-    role_id: number;
+    roleId: number;
     advertisement_id: number;
     status: boolean;
     securityCode: string;

@@ -30,7 +30,7 @@ export class Logincomponet implements OnInit{
     this.userServices.Login(user).then(
       res =>{
         sessionStorage.setItem('username', this.username);
-        this.router.navigate(['/admin/basic_table']);
+        this.router.navigate(['/admin/home']);
       },
       err =>{
         console.log(err);
