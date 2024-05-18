@@ -3,29 +3,42 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { User } from './Entities/User.entities';
+import { RoleServices } from './Services/Role.Services';
+import { Role } from './Entities/Role.entities';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet,RouterLink, FormsModule, ReactiveFormsModule],
-  templateUrl: 'register.component.html'
+  templateUrl: 'register.component.html',
 })
 export class RegisterComponent implements OnInit {
   
-  constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router){}
+  constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router, private roleServices: RoleServices){}
 
   registerForm: FormGroup;
   username: string;
   email: string;
   password: string;
+  Roles: Role[];
+  msg: string;
 
   ngOnInit(){
     this.registerForm = this.formBuilder.group({
         username: '',
         password: '',
         email: '',
-        roleId: 1
+        roleId: 'all',
     });
+
+    this.roleServices.FindAll().then(
+      res =>{
+        this.Roles = res as Role[];
+      },
+      err =>{
+        console.log(err);
+      }
+    )
   }
 
   Register(){
@@ -33,7 +46,7 @@ export class RegisterComponent implements OnInit {
     
     this.userServices.Register(user).then(
         res =>{
-            this.router.navigate([''])
+            this.msg = "Success";
         },
         err =>{
             console.log(err);

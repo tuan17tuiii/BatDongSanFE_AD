@@ -18,6 +18,7 @@ export class Logincomponet implements OnInit{
 
   username: string;
   password: string;
+  msg: string;
 
   ngOnInit() {
 
@@ -27,12 +28,17 @@ export class Logincomponet implements OnInit{
     let user = new User();
     user.username = this.username;
     user.password = this.password;
-    this.userServices.Login(user).then(
+    this.userServices.LoginAdmin(user).then(
       res =>{
-        if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
-          sessionStorage.setItem('username', this.username);
-          this.router.navigate(['/admin/home']);
-        }
+        if(res['result']){
+          console.log(res);
+          if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
+            sessionStorage.setItem('username', this.username);
+            this.router.navigate(['/admin/home']);
+          }
+        }else {
+          this.msg = 'Failed';
+      }
       },
       err =>{
         console.log(err);

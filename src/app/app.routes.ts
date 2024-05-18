@@ -12,6 +12,8 @@ import { register } from 'node:module';
 import { RegisterComponent } from './register.component';
 import { VerifyWebComponent } from './VerifyWeb.component';
 import { Informationcomponent } from './Information.component';
+import { UsersListcomponent } from './UsersList.component';
+import { AdminsListcomponent } from './AdminsList.component';
 
 export const routes: Routes = [
     {
@@ -40,16 +42,25 @@ export const routes: Routes = [
                 path: 'info',
                 component: Informationcomponent
             },
+            {
+                path: 'UsersList',
+                component: UsersListcomponent
+            },
+            {
+                path: 'AdminsList',
+                component: AdminsListcomponent
+            },
+            {
+                path: 'register',
+                component: RegisterComponent
+            },
         ]
     }, 
     {
         path: "",
         component: Logincomponet
     },
-    {
-        path: 'register',
-        component: RegisterComponent
-    },
+    
     {
         path: 'verify',
         component: VerifyWebComponent

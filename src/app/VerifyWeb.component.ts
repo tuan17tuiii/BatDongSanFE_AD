@@ -9,7 +9,8 @@ import { error } from 'node:console';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet,RouterLink, FormsModule, ReactiveFormsModule],
-  templateUrl: 'VerifyWeb.component.html'
+  templateUrl: 'VerifyWeb.component.html',
+  host: { 'collision-id': 'VerifyWebComponent' },
 })
 export class VerifyWebComponent implements OnInit {
   

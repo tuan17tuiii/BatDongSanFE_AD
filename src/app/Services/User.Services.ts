@@ -14,12 +14,24 @@ export class UserServices{
 
     }
 
+    async FindAll(){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findAll'));
+    }
+
+    async FindAllAdmin(){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findAllAdmin'));
+    }
+
+    async FindAllUser(){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findAllUser'));
+    }
+
     async Register(account: User){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/Register', account));
     }
 
-    async Login(account: User){
-        return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/Login', account));
+    async LoginAdmin(account: User){
+        return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/loginAdmin', account));
     }
 
     async Verify(securityCode: string, username: string){
