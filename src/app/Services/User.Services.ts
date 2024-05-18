@@ -29,4 +29,8 @@ export class UserServices{
     async findByUsername(username: string){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findByUsername/' + username));
     }
+
+    async Update(user: User){
+        return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'account/Update', user));
+    }
 }

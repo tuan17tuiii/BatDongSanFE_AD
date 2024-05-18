@@ -11,6 +11,7 @@ import { MidComponent } from './mdi.component';
 import { register } from 'node:module';
 import { RegisterComponent } from './register.component';
 import { VerifyWebComponent } from './VerifyWeb.component';
+import { Informationcomponent } from './Information.component';
 
 export const routes: Routes = [
     {
@@ -34,6 +35,10 @@ export const routes: Routes = [
             {
                 path: 'icon',
                 component: MidComponent
+            },
+            {
+                path: 'info',
+                component: Informationcomponent
             },
         ]
     }, 

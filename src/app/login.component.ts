@@ -29,8 +29,10 @@ export class Logincomponet implements OnInit{
     user.password = this.password;
     this.userServices.Login(user).then(
       res =>{
-        sessionStorage.setItem('username', this.username);
-        this.router.navigate(['/admin/home']);
+        if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
+          sessionStorage.setItem('username', this.username);
+          this.router.navigate(['/admin/home']);
+        }
       },
       err =>{
         console.log(err);
