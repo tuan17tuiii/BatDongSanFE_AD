@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Create Advertisement</h2>
+                    <p class="card-description" style="color: red;"> {{msg}} </p>
+                    @if(AddADsForm != null){
+                    <form class="forms-sample" [formGroup]="AddADsForm" (ngSubmit)="Update()">
+                        <div class="form-group row">
+                            <label for="Name" class="col-sm-3 col-form-label">Advertisement's Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control" id="Name"
+                                    placeholder="Advertisement's Name" formControlName="advertisementName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Describe" class="col-sm-3 col-form-label">Describe</label>
+                            <div class="col-sm-9">
+                                <textarea id="Describe" class="form-control" placeholder="Describe"
+                                    formControlName="describe" rows="8">
+
+                                    </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Price" class="col-sm-3 col-form-label">Price</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Price" placeholder="Price"
+                                    formControlName="price">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Date" class="col-sm-3 col-form-label">Date</label>
+                            <div class="col-sm-9">
+                                <p-calendar inputStyleClass="form-control" [style]="{'width':'100%'}"
+                                    class="treetableDate" id="Date" placeholder="Date" formControlName="time"
+                                    dateFormat="dd/mm/yy" [showIcon]="true" [iconDisplay]="'input'" />
+                            </div>
+                        </div>
+                        <input type="hidden" formControlName="status">
+                        <input type="hidden" formControlName="id">
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button class="btn btn-danger" [routerLink]="['/admin/home']">Cancel</button>
+                    </form>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

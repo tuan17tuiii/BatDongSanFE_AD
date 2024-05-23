@@ -49,4 +49,8 @@ export class UserServices{
     async Update(user: User){
         return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'account/Update', user));
     }
+
+    async Delete(id: number){
+        return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'account/Delete/' + id));
+    }
 }

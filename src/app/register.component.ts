@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
     
     this.userServices.Register(user).then(
         res =>{
+          console.log(user);
             this.msg = "Success";
         },
         err =>{

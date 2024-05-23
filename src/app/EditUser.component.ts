@@ -21,7 +21,6 @@ export class EditUsercomponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.paramMap.subscribe(p => {
             let id = p.get('id');
-            console.log(id);
             this.userServices.findById(id).then(
                 res => {
                     let user: User = res as User;
