@@ -14,6 +14,8 @@ import { VerifyWebComponent } from './VerifyWeb.component';
 import { Informationcomponent } from './Information.component';
 import { UsersListcomponent } from './UsersList.component';
 import { AdminsListcomponent } from './AdminsList.component';
+import { EditUsercomponent } from './EditUser.component';
+import { EditAdmincomponent } from './EditAdmin.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +55,14 @@ export const routes: Routes = [
             {
                 path: 'register',
                 component: RegisterComponent
+            },
+            {
+                path: 'edit-user',
+                component: EditUsercomponent
+            },
+            {
+                path: 'edit-admin',
+                component: EditAdmincomponent
             },
         ]
     }, 

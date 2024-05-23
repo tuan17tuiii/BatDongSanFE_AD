@@ -12,6 +12,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Role</th>
+                            <th>Action</th>
                         </tr>
 
                     </thead>
@@ -30,7 +31,10 @@
                                     User
                                 }
                             </td>
-
+                            <td>
+                                <button type="button" class="btn btn-success mr-2" [routerLink]="['/admin/edit-admin', {id: admin.id}]">Edit</button>
+                                <button type="button" class="btn btn-danger mr-2" (click)="delete(admin.id)">Delete</button>
+                            </td>
                             </tr>
                         }
                     </tbody>

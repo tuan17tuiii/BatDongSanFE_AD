@@ -30,5 +30,7 @@ export class AdminsListcomponent implements OnInit{
         )
     }
   
-    
+    delete(id: number){
+
+    }
 }

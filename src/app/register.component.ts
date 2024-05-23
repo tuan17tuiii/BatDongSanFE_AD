@@ -11,6 +11,7 @@ import { Role } from './Entities/Role.entities';
   standalone: true,
   imports: [RouterOutlet,RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: 'register.component.html',
+  host: { 'collision-id': 'RegisterComponent' },
 })
 export class RegisterComponent implements OnInit {
   

@@ -30,5 +30,8 @@ export class UsersListcomponent implements OnInit{
         )
     }
   
+    delete(id: number){
+
+    }
     
 }

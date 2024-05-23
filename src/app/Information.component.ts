@@ -10,7 +10,8 @@ import { error } from 'console';
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule,RouterOutlet,RouterLink, ],
   templateUrl: 'Information.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  host: { 'collision-id': 'Informationcomponent' },
 })
 export class Informationcomponent implements OnInit{
     constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router){}
