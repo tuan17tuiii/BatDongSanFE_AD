@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { User } from './Entities/User.entities';
@@ -27,9 +27,9 @@ export class EditUsercomponent implements OnInit {
                     this.InforForm = this.formBuilder.group({
                         id: user.id,
                         username: user.username,
-                        email: user.email,
-                        name: user.name,
-                        phone: user.phone,
+                        email: [user.email,[Validators.required]],
+                        name: [user.name,[Validators.required]],
+                        phone: [user.phone,[Validators.required]],
                         roleId: user.roleId,
                         password: user.password,
                         status: user.status,

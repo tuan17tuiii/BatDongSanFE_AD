@@ -4,7 +4,7 @@
         <div class="col-md-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Create Advertisement</h2>
+                    <h2 class="card-title">Update Advertisement</h2>
                     <p class="card-description" style="color: red;"> {{msg}} </p>
                     @if(AddADsForm != null){
                     <form class="forms-sample" [formGroup]="AddADsForm" (ngSubmit)="Update()">
@@ -14,6 +14,11 @@
                                 <input type="text" class="form-control form-control" id="Name"
                                     placeholder="Advertisement's Name" formControlName="advertisementName">
                             </div>
+                            @if (AddADsForm.get('advertisementName').touched) {
+                            @if (AddADsForm.hasError('required',['advertisementName'])) {
+                            <span class="error" style="color: red;">Advertisement's Name required !</span>
+                            }
+                            }
                         </div>
                         <div class="form-group row">
                             <label for="Describe" class="col-sm-3 col-form-label">Describe</label>
@@ -23,13 +28,23 @@
 
                                     </textarea>
                             </div>
+                            @if (AddADsForm.get('describe').touched) {
+                            @if (AddADsForm.hasError('required',['describe'])) {
+                            <span class="error" style="color: red;">Describe required !</span>
+                            }
+                            }
                         </div>
                         <div class="form-group row">
                             <label for="Price" class="col-sm-3 col-form-label">Price</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="Price" placeholder="Price"
-                                    formControlName="price">
+                                <input type="number" class="form-control" id="Price" placeholder="Price"
+                                    formControlName="price" >
                             </div>
+                            @if (AddADsForm.get('price').touched) {
+                            @if (AddADsForm.hasError('required',['price'])) {
+                            <span class="error" style="color: red;">Price required !</span>
+                            }
+                            }
                         </div>
                         <div class="form-group row">
                             <label for="Date" class="col-sm-3 col-form-label">Date</label>
@@ -38,10 +53,15 @@
                                     class="treetableDate" id="Date" placeholder="Date" formControlName="time"
                                     dateFormat="dd/mm/yy" [showIcon]="true" [iconDisplay]="'input'" />
                             </div>
+                            @if (AddADsForm.get('time').touched) {
+                            @if (AddADsForm.hasError('required',['time'])) {
+                            <span class="error" style="color: red;">Date required !</span>
+                            }
+                            }
                         </div>
                         <input type="hidden" formControlName="status">
                         <input type="hidden" formControlName="id">
-                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button type="submit" class="btn btn-primary mr-2" [disabled]="AddADsForm.invalid">Save</button>
                         <button class="btn btn-danger" [routerLink]="['/admin/home']">Cancel</button>
                     </form>
                     }

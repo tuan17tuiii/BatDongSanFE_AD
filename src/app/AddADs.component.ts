@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { User } from './Entities/User.entities';
@@ -27,10 +27,10 @@ export class AddADsComponent implements OnInit {
 
   ngOnInit(){
     this.AddADsForm = this.formBuilder.group({
-        advertisementName: '',
-        describe: '',
-        price: '',
-        time: new Date(),
+        advertisementName: ['',[Validators.required]],
+        describe: ['',[Validators.required]],
+        price: ['',[Validators.required]],
+        time: [new Date(),[Validators.required]],
         status: false
     });
 

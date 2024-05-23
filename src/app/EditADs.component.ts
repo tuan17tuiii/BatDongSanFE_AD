@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { User } from './Entities/User.entities';
@@ -24,6 +24,7 @@ export class EditADsComponent implements OnInit {
   AddADsForm: FormGroup;
 
   msg: string;
+  Ads: ADs;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(a => {
@@ -32,12 +33,13 @@ export class EditADsComponent implements OnInit {
         res => {
           if (res) {
             let ads: ADs = res as ADs;
+            this.Ads = ads;
             this.AddADsForm = this.formBuilder.group({
               id: ads.id,
-              advertisementName: ads.advertisementName,
-              describe: ads.describe,
-              price: ads.price,
-              time: ads.time,
+              advertisementName: [ads.advertisementName, [Validators.required]],
+              describe: [ads.describe, [Validators.required]],
+              price: [ads.price, [Validators.required]],
+              time: [ads.time, [Validators.required]],
               status: ads.status
             });
           }
@@ -51,20 +53,36 @@ export class EditADsComponent implements OnInit {
 
   Update() {
     let ads: ADs = this.AddADsForm.value as ADs;
-    ads.time = formatDate(ads.time, 'dd/MM/yyyy', 'en-US');
-
-    this.adsServices.Update(ads).then(
-      res => {
-        if (res['result'] == true) {
-          this.msg = "Update Advertisement Successd !";
-          this.router.navigate(['/admin/ADs']);
-        } else {
-          this.msg = "Update Advertisement Failed !";
+    if (this.Ads.time == ads.time) {
+      this.adsServices.Update(ads).then(
+        res => {
+          if (res['result'] == true) {
+            this.msg = "Update Advertisement Successd !";
+            this.router.navigate(['/admin/ADs']);
+          } else {
+            this.msg = "Update Advertisement Failed !";
+          }
+        },
+        err => {
+          console.log(err);
         }
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      );
+    } else {
+      ads.time = formatDate(ads.time, 'dd/MM/yyyy', 'en-US');
+
+      this.adsServices.Update(ads).then(
+        res => {
+          if (res['result'] == true) {
+            this.msg = "Update Advertisement Successd !";
+            this.router.navigate(['/admin/ADs']);
+          } else {
+            this.msg = "Update Advertisement Failed !";
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   };
 };
