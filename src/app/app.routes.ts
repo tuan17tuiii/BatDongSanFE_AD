@@ -16,6 +16,7 @@ import { UsersListcomponent } from './UsersList.component';
 import { AdminsListcomponent } from './AdminsList.component';
 import { EditUsercomponent } from './EditUser.component';
 import { EditAdmincomponent } from './EditAdmin.component';
+import { NewsComponent } from './news.component';
 
 export const routes: Routes = [
     {
@@ -63,6 +64,10 @@ export const routes: Routes = [
             {
                 path: 'edit-admin',
                 component: EditAdmincomponent
+            },
+            {
+                path: 'blognews',
+                component: NewsComponent
             },
         ]
     }, 
