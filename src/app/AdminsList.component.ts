@@ -7,30 +7,89 @@ import { error } from 'console';
 import { TableModule } from 'primeng/table';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule,RouterOutlet,RouterLink, TableModule],
-  templateUrl: 'AdminsList.component.html',
-  host: { 'collision-id': 'AdminsListcomponent' },
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule],
+    templateUrl: 'AdminsList.component.html',
+    host: { 'collision-id': 'AdminsListcomponent' },
+    styleUrl: './app.component.css'
 })
-export class AdminsListcomponent implements OnInit{
-    constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router){}
+export class AdminsListcomponent implements OnInit {
+    constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router) { }
 
     admins: User[];
+    msg: string;
 
-    ngOnInit(){
+    ngOnInit() {
         this.userServices.FindAllAdmin().then(
-            res =>{
+            res => {
                 this.admins = res as User[];
             },
-            err =>{
+            err => {
                 console.log(err);
             }
         )
     }
-  
-    delete(id: number){
 
+    delete(id: number) {
+        var result = confirm('Are you sure !');
+        if (result) {
+            this.userServices.Delete(id).then(
+                res => {
+                    if (res) {
+                        location.reload();
+                    } else {
+                        this.msg = 'Failed !';
+                    }
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+        }
+    }
+
+    Active(id: number) {
+        this.userServices.findById(String(id)).then(
+            res => {
+                if (res) {
+                    let user = res as User;
+                    user.status = true;
+                    this.userServices.Update(user).then(
+                        res =>{
+                            location.reload();
+                        },
+                        err =>{
+                            console.log(err);
+                        }
+                    );
+                };
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    Deactive(id: number) {
+        this.userServices.findById(String(id)).then(
+            res => {
+                if (res) {
+                    let user = res as User;
+                    user.status = false;
+                    this.userServices.Update(user).then(
+                        res =>{
+                            location.reload();
+                        },
+                        err =>{
+                            console.log(err);
+                        }
+                    );
+                };
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
 }

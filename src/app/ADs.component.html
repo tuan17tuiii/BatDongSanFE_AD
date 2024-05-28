@@ -1,0 +1,54 @@
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title" align="center">Advertisement List</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead align="center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Describe</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody align="center">
+                        @for (ads of ADs; track ads) {
+                        <tr>
+                            <td>{{ads.id}}</td>
+                            <td>{{ads.advertisementName}}</td>
+                            <td>{{ads.price}}</td>
+                            <td>{{ads.describe}}</td>
+                            <td>{{ads.time}}</td>
+                            <td>
+                                @if (ads.status == true) {
+                                Active
+                                }@else {
+                                Deactive
+                                }
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success mr-2"
+                                    [routerLink]="['/admin/edit-ads', {id: ads.id}]">Edit</button>
+                                <button type="button" class="btn btn-danger mr-2"
+                                    (click)="delete(ads.id)">Delete</button>
+                                @if (ads.status == true) {
+                                <button type="button" class="btn btn-warning mr-2"
+                                    (click)="Deactive(ads.id)">Deactive</button>
+                                }@else {
+                                <button type="button" class="btn btn-success mr-2"
+                                    (click)="Active(ads.id)">Active</button>
+                                }
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

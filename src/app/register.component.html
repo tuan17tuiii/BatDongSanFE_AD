@@ -11,24 +11,47 @@
                 <select class="form-control p_input" formControlName="roleId">
                   <option value="all">All</option>
                   @for (role of Roles; track role) {
-                    <option value="{{role.id}}">{{role.name}}</option>
+                  <option value="{{role.id}}">{{role.name}}</option>
                   }
                 </select>
+                @if (registerForm.get('roleId').touched) {
+                  @if (registerForm.hasError('required',['roleId'])) {
+                    <span class="error" style="color: red;">Role required !</span>
+                  }
+                  @if (registerForm.get('roleId').hasError('invalidRole')) {
+                    <span class="error" style="color: red;">Selecting 'All' is not allowed! !</span>
+                  }
+                }
               </div>
               <div class="form-group">
                 <label>Username</label>
-                <input type="text" class="form-control p_input" formControlName="username">
+                <input type="text" class="form-control p_input" formControlName="username" placeholder="Username">
+                @if (registerForm.get('username').touched) {
+                  @if (registerForm.hasError('required',['username'])) {
+                    <span class="error" style="color: red;">Name required !</span>
+                  }
+                }
               </div>
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control p_input" formControlName="email">
+                <input type="email" class="form-control p_input" formControlName="email" placeholder="Email">
+                @if (registerForm.get('email').touched) {
+                  @if (registerForm.hasError('required',['email'])) {
+                    <span class="error" style="color: red;">Email required !</span>
+                  }
+                }
               </div>
               <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control p_input" formControlName="password">
+                <input type="password" class="form-control p_input" formControlName="password" placeholder="Password">
+                @if (registerForm.get('password').touched) {
+                  @if (registerForm.hasError('required',['password'])) {
+                    <span class="error" style="color: red;">Password required !</span>
+                  }
+                }
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-block enter-btn">Register</button>
+                <button type="submit" class="btn btn-primary btn-block enter-btn" [disabled]="registerForm.invalid">Register</button>
               </div>
             </form>
           </div>

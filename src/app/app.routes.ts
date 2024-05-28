@@ -16,66 +16,147 @@ import { UsersListcomponent } from './UsersList.component';
 import { AdminsListcomponent } from './AdminsList.component';
 import { EditUsercomponent } from './EditUser.component';
 import { EditAdmincomponent } from './EditAdmin.component';
+<<<<<<< HEAD
 import { NewsComponent } from './news.component';
+=======
+import { AdminSecurity } from './Services/Security.Services';
+import { ADscomponet } from './ADs.component';
+import { AddADsComponent } from './AddADs.component';
+import { EditADsComponent } from './EditADs.component';
+>>>>>>> 55b585089a4c53f68e6fe0a3289a2f314a143f9e
 
 export const routes: Routes = [
     {
         path: 'admin',
         component: LayoutComponent,
+        canActivate: [AdminSecurity],
+        data: {
+            role: 'admin'
+        },
         children: [
             {
-              path: 'home',
-                component: Indexcomponet
-            }, {
+                path: 'home',
+                component: Indexcomponet,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
+            },
+            {
                 path: 'chartjs',
-                component: Chartjscomponent
-            }, {
+                component: Chartjscomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
+            },
+            {
                 path: 'basic_elements',
-                component: Basic_elementscomponent
+                component: Basic_elementscomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'basic_table',
-                component: Basictablecomponent
+                component: Basictablecomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'icon',
-                component: MidComponent
+                component: MidComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'info',
-                component: Informationcomponent
+                component: Informationcomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'UsersList',
-                component: UsersListcomponent
+                component: UsersListcomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'AdminsList',
-                component: AdminsListcomponent
+                component: AdminsListcomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'register',
-                component: RegisterComponent
+                component: RegisterComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'edit-user',
-                component: EditUsercomponent
+                component: EditUsercomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'edit-admin',
-                component: EditAdmincomponent
+                component: EditAdmincomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
+            },
+            {
+                path: 'ADs',
+                component: ADscomponet,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
+            },
+            {
+                path: 'AddADs',
+                component: AddADsComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
+            },
+            {
+                path: 'edit-ads',
+                component: EditADsComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
             },
             {
                 path: 'blognews',
                 component: NewsComponent
             },
         ]
-    }, 
+    },
     {
         path: "",
         component: Logincomponet
     },
-    
+
     {
         path: 'verify',
         component: VerifyWebComponent

@@ -37,7 +37,7 @@ export class Logincomponet implements OnInit{
             this.router.navigate(['/admin/home']);
           }
         }else {
-          this.msg = 'Failed';
+          this.msg = 'Username or Password is not correct !';
       }
       },
       err =>{
