@@ -16,10 +16,14 @@ import { UsersListcomponent } from './UsersList.component';
 import { AdminsListcomponent } from './AdminsList.component';
 import { EditUsercomponent } from './EditUser.component';
 import { EditAdmincomponent } from './EditAdmin.component';
+<<<<<<< HEAD
+import { NewsComponent } from './news.component';
+=======
 import { AdminSecurity } from './Services/Security.Services';
 import { ADscomponet } from './ADs.component';
 import { AddADsComponent } from './AddADs.component';
 import { EditADsComponent } from './EditADs.component';
+>>>>>>> 55b585089a4c53f68e6fe0a3289a2f314a143f9e
 
 export const routes: Routes = [
     {
@@ -141,6 +145,10 @@ export const routes: Routes = [
                 data: {
                     role: 'admin'
                 },
+            },
+            {
+                path: 'blognews',
+                component: NewsComponent
             },
         ]
     },
