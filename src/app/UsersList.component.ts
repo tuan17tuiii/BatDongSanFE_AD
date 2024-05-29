@@ -57,7 +57,7 @@ export class UsersListcomponent implements OnInit {
                     user.status = true;
                     this.userServices.Update(user).then(
                         res => {
-                            location.reload();
+                            this.ngOnInit();
                         },
                         err => {
                             console.log(err);
@@ -79,7 +79,7 @@ export class UsersListcomponent implements OnInit {
                     user.status = false;
                     this.userServices.Update(user).then(
                         res => {
-                            location.reload();
+                            this.ngOnInit();
                         },
                         err => {
                             console.log(err);

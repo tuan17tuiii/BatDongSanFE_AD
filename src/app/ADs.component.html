@@ -34,8 +34,11 @@
                             <td>
                                 <button type="button" class="btn btn-success mr-2"
                                     [routerLink]="['/admin/edit-ads', {id: ads.id}]">Edit</button>
-                                <button type="button" class="btn btn-danger mr-2"
-                                    (click)="delete(ads.id)">Delete</button>
+
+                                <p-toast />
+                                <p-confirmPopup />
+                                <p-button (click)="delete(ads.id, $event)" label="Delete" [outlined]="true" styleClass="btn btn-danger mr-2"/>
+
                                 @if (ads.status == true) {
                                 <button type="button" class="btn btn-warning mr-2"
                                     (click)="Deactive(ads.id)">Deactive</button>

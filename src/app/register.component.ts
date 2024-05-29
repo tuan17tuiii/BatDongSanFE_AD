@@ -68,6 +68,7 @@ export class RegisterComponent implements OnInit {
             res => {
               if (res) {
                 this.messageService.add({ severity: 'success', summary: 'Register Success !', detail: 'Register Successful! Please go to your Email and Verify the account !', key: 'tl', life: 2000 });
+                this.registerForm.reset()
               }
             },
             err => {

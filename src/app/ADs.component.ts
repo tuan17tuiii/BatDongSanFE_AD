@@ -5,16 +5,21 @@ import { User } from './Entities/User.entities';
 import { UserServices } from './Services/User.Services';
 import { ADs } from './Entities/ADs.entities';
 import { ADsServices } from './Services/ADs.services';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ButtonModule, ToastModule, ConfirmPopupModule],
   templateUrl: './ADs.component.html',
+  providers: [ConfirmationService, MessageService]
 })
 export class ADscomponet implements OnInit {
 
-  constructor(private adsServices: ADsServices, private router: Router) {
+  constructor(private adsServices: ADsServices, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) {
 
   }
 
@@ -32,22 +37,36 @@ export class ADscomponet implements OnInit {
     )
   }
 
-  delete(id: number) {
-    var result = confirm('Are you sure !');
-    if (result) {
-      this.adsServices.Delete(id).then(
-        res => {
-          if (res['result'] == true) {
-            location.reload();
-          } else {
-            this.msg = 'Failed !';
+  delete(id: number, event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure !',
+      icon: 'pi pi-exclamation-circle',
+      acceptIcon: 'pi pi-check mr-1',
+      rejectIcon: 'pi pi-times mr-1',
+      acceptLabel: 'Confirm',
+      rejectLabel: 'Cancel',
+      rejectButtonStyleClass: 'p-button-outlined p-button-sm btn btn-info mr-2',
+      acceptButtonStyleClass: 'p-button-sm btn btn-danger mr-2',
+      accept: () => {
+        this.adsServices.Delete(id).then(
+          res => {
+            if (res['result'] == true) {
+              location.reload();
+            } else {
+              this.messageService.add({ severity: 'error', summary: 'Failed !', detail: 'Delete Failed !', life: 3000 });
+            }
+          },
+          error => {
+            console.log(error);
           }
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
+        );
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+      }
+    });
+
   }
 
   Active(id: number) {
@@ -58,8 +77,8 @@ export class ADscomponet implements OnInit {
           ads.status = true;
           this.adsServices.Update(ads).then(
             res => {
-              if(res['result'] == true){
-                location.reload();
+              if (res['result'] == true) {
+                this.ngOnInit();
               };
             },
             err => {
@@ -82,8 +101,8 @@ export class ADscomponet implements OnInit {
           ads.status = false;
           this.adsServices.Update(ads).then(
             res => {
-              if(res['result'] == true){
-                location.reload();
+              if (res['result'] == true) {
+                this.ngOnInit();
               };
             },
             err => {
