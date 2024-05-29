@@ -33,7 +33,8 @@ export class EditAdmincomponent implements OnInit {
                         roleId: user.roleId,
                         password: user.password,
                         status: user.status,
-                        securityCode: user.securityCode
+                        securityCode: user.securityCode,
+                        advertisementId: user.advertisement_id
                     });
                 },
                 err => {

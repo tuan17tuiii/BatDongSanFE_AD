@@ -46,6 +46,10 @@ export class UserServices{
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findById/' + id));
     }
 
+    async AccountExists(username: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/Exists/' + username));
+    }
+
     async Update(user: User){
         return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'account/Update', user));
     }
