@@ -4,17 +4,22 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { User } from './Entities/User.entities';
 import { error } from 'console';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule,RouterOutlet,RouterLink, ],
+  imports: [FormsModule, ReactiveFormsModule,RouterOutlet,RouterLink, ToastModule, ButtonModule, RippleModule],
   templateUrl: 'Information.component.html',
   styleUrl: './app.component.css',
   host: { 'collision-id': 'Informationcomponent' },
+  providers: [MessageService]
 })
 export class Informationcomponent implements OnInit{
-    constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router){}
+    constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router, private messageService: MessageService){}
 
     InforForm: FormGroup;
     username: string;
@@ -56,7 +61,7 @@ export class Informationcomponent implements OnInit{
           res =>{
             if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
                 sessionStorage.setItem('username', this.username);
-                this.router.navigate(['/admin/home']);
+                this.messageService.add({ severity: 'success', summary: 'Success !', detail: 'Update Success', key: 'tl', life: 2000 });
               }           
           },
           err =>{

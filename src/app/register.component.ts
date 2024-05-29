@@ -6,17 +6,23 @@ import { User } from './Entities/User.entities';
 import { RoleServices } from './Services/Role.Services';
 import { Role } from './Entities/Role.entities';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule],
   templateUrl: 'register.component.html',
   host: { 'collision-id': 'RegisterComponent' },
+  providers: [MessageService]
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router, private roleServices: RoleServices) { }
+  constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router, private roleServices: RoleServices, private messageService: MessageService) { }
 
   registerForm: FormGroup;
   username: string;
@@ -53,10 +59,22 @@ export class RegisterComponent implements OnInit {
   Register() {
     let user: User = this.registerForm.value as User;
 
-    this.userServices.Register(user).then(
+    this.userServices.AccountExists(user.username, user.email).then(
       res => {
-        console.log(user);
-        this.msg = "Success";
+        if (res) {
+          this.messageService.add({ severity: 'error', summary: 'Failed !', detail: 'Username or Email already exists !', key: 'tl', life: 2000 });
+        } else {
+          this.userServices.Register(user).then(
+            res => {
+              if (res) {
+                this.messageService.add({ severity: 'success', summary: 'Register Success !', detail: 'Register Successful! Please go to your Email and Verify the account !', key: 'tl', life: 2000 });
+              }
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        }
       },
       err => {
         console.log(err);
