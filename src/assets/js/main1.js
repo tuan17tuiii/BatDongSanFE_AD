@@ -4,7 +4,7 @@ $(function () {
             ['bold', 'italic', 'underline', 'strike'],        // các nút kiểu chữ
             ['blockquote', 'code-block'],
 
-            [{ 'header': 1 }, { 'header': 2 }],               // giá trị nút tùy chỉnh
+            [{ 'header': 1 }, { 'header': 2 }, { 'header': 3 }],               // giá trị nút tùy chỉnh
             [{ 'list': 'ordered' }, { 'list': 'bullet' }],
             [{ 'script': 'sub' }, { 'script': 'super' }],      // chữ nhỏ trên hoặc dưới
             [{ 'indent': '-1' }, { 'indent': '+1' }],          // thụt lề
@@ -14,20 +14,18 @@ $(function () {
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
             [{ 'color': [] }, { 'background': [] }],          // dropdown màu sắc
-            [{ 'font': ['Arial', 'Helvetica', 'Times New Roman', 'Courier New'] }], // dropdown phông chữ
+            // dropdown phông chữ
             [{ 'align': [] }],
+            [{ 'font': ['Arial', 'Helvetica', 'Times New Roman', 'Courier New'] }], 
 
             [{ 'image': '' }],                                // nút chèn hình ảnh
             ['clean']                                         // nút xóa định dạng
         ];
 
-        var quill = new Quill('#editorr', {
+        var quill = new Quill('#editor', {
             modules: {
-                toolbar: toolbarOptions,
-                imageResize: {
-                    displaySize: true
-                },
-                imageToolbar: true
+                toolbar: toolbarOptions
+               
             },
             theme: 'snow'
         });

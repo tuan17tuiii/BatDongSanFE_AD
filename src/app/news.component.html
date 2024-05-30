@@ -1,6 +1,41 @@
 <div boder="1px" class="container" style="background-color: white; color: black;width: 100%;height: auto;" >
-    <h1 class="mb-4">Trình soạn thảo văn bản với aPrimeNG</h1>
-    <p>Sử dụng các công scụ chỉnh sửa văns bản c từ PrimeNG để tạo nội dung văn bản linh hoạt và đa dạng.</p>
-    <p>Chỉnh ssửa  nxội dunga vă an bảnvv:</p>
-    <div id="editorr"> </div>
+    <h1 class="mb-4">Trình soạn thảo văn bản với PrimeNG</h1>
+    <p>Sử dụng các công cụ chỉnh sửa văns bản c từ PrimeNG để tạo nội dung văn bản linh hoạt và đa dạng.</p>
+    <p>Chỉnh sửa nội dung văn bản:</p>
+    <div id="editor"> </div>
+    <div class="container container-custom">
+        <h2>Pictures</h2>
+        <div>
+            <ul>
+                <li><b>Vui lòng chọn ít nhất 1 tấm ảnh</b></li>
+                <li> <b>Đăng tối thiểu 4 ảnh thường với tin VIP</b></li>
+                <li><b>Hãy dùng ảnh thật, không trùng, không chèn SĐT</b></li>
+                <li><b>Mỗi ảnh kích thước tối thiểu 100x100 px, tối đa 1 MB</b></li>
+                
+            </ul>
+        </div>
+        <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+            <div class="file-input-wrapper">
+                <i class="pi pi-upload file-input-label"></i>
+                <input type="file" class="file-input" (change)="selectFiles($event)" multiple>
+            </div>
+        </div>
+        <div class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
+            <div *ngFor="let image of images; let i = index" class="image-container" cdkDrag>
+                <img [src]="image" width="200px">
+                <button class="close-button">×</button>
+            </div>
+        </div>
+        
+        <div>
+            <button type="button" >Upload</button>
+        </div>
+        <div class="row g-2">
+            <div class="col-md-2 offset-md-10">
+                <button 
+                    class="btn btn-dark border-0 w-100 py-3">Đăng Tin</button>
+                
+            </div>
+        </div>
+    </div>
 </div>
