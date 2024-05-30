@@ -21,15 +21,16 @@ import { AdminSecurity } from './Services/Security.Services';
 import { ADscomponet } from './ADs.component';
 import { AddADsComponent } from './AddADs.component';
 import { EditADsComponent } from './EditADs.component';
+import { ChangePasswordComponent } from './ChangePassword.component';
 
 
 export const routes: Routes = [
     {
-        path: 'admin',
+        path: '',
         component: LayoutComponent,
         canActivate: [AdminSecurity],
         data: {
-            role: 'admin'
+            role: '1'
         },
         children: [
             {
@@ -37,7 +38,7 @@ export const routes: Routes = [
                 component: Indexcomponet,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -45,7 +46,7 @@ export const routes: Routes = [
                 component: Chartjscomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -53,7 +54,7 @@ export const routes: Routes = [
                 component: Basic_elementscomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -61,7 +62,7 @@ export const routes: Routes = [
                 component: Basictablecomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -69,7 +70,7 @@ export const routes: Routes = [
                 component: MidComponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -77,7 +78,7 @@ export const routes: Routes = [
                 component: Informationcomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -85,7 +86,7 @@ export const routes: Routes = [
                 component: UsersListcomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -93,7 +94,7 @@ export const routes: Routes = [
                 component: AdminsListcomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -101,7 +102,7 @@ export const routes: Routes = [
                 component: RegisterComponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -109,7 +110,7 @@ export const routes: Routes = [
                 component: EditUsercomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -117,7 +118,7 @@ export const routes: Routes = [
                 component: EditAdmincomponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -125,7 +126,7 @@ export const routes: Routes = [
                 component: ADscomponet,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -133,7 +134,7 @@ export const routes: Routes = [
                 component: AddADsComponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
@@ -141,17 +142,29 @@ export const routes: Routes = [
                 component: EditADsComponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
             },
             {
                 path: 'blognews',
-                component: NewsComponent
+                component: NewsComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'changepass',
+                component: ChangePasswordComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
             },
         ]
     },
     {
-        path: "",
+        path: "Login",
         component: Logincomponet
     },
 

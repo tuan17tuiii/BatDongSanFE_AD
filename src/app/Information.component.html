@@ -6,7 +6,7 @@
                     <div class="card-body px-5 py-5">
                         <h3 class="card-title text-left mb-3">Account Information</h3>
                         @if (InforForm != null) {
-                        <form [formGroup]="InforForm" (ngSubmit)="Save()">
+                        <form [formGroup]="InforForm">
                             <div class="form-group">
                                 <label>Username</label>
                                 <input type="text" class="form-control p_input" formControlName="username" readonly
@@ -48,13 +48,13 @@
                                 <input type="hidden" formControlName="securityCode">
                                 <p-toast position="top-right" key="tl" />
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <p-button pRipple type="ngSubmit" label="Save"
-                                            styleClass="btn btn-info btn-block enter-btn" [disabled]="InforForm.invalid" [style]="{'width':'100%'}"/>
+                                            styleClass="btn btn-success" [disabled]="InforForm.invalid" [style]="{'width':'100%'}" (click)="Save()"/>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <p-button pRipple type="p-button" label="Change Password"
-                                            styleClass="btn btn-info btn-block enter-btn" [style]="{'width':'100%'}"/>
+                                            styleClass="btn btn-primary" [style]="{'width':'100%'}" [routerLink]="['changepass']"/>
                                     </div>
                                 </div>
                             </div>

@@ -18,30 +18,20 @@
                     </thead>
                     <tbody align="center">
                         @for (user of users; track user) {
-                            <tr>
-                                <td>{{user.id}}</td>
+                        <tr>
+                            <td>{{user.id}}</td>
                             <td>{{user.username}}</td>
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.phone}}</td>
                             <td>
                                 @if(user.roleId == 1){
-                                    Admin
+                                Admin
                                 }@else {
-                                    User
+                                User
                                 }
                             </td>
-                            <td>
-                                <button type="button" class="btn btn-success mr-2" [routerLink]="['edit-user', {id: user.id}]">Edit</button>
-                                <button type="button" class="btn btn-danger mr-2" (click)="delete(user.id)">Delete</button>
-                                @if (user.status == true) {
-                                    <button type="button" class="btn btn-warning mr-2" (click)="Deactive(user.id)">Deactive</button>
-                                }@else {
-                                    <button type="button" class="btn btn-success mr-2" (click)="Active(user.id)">Active</button>
-                                }
-                            </td>
-                            <td><Span style="color: red;">{{msg}}</Span></td>
-                            </tr>
+                        </tr>
                         }
                     </tbody>
                 </table>
