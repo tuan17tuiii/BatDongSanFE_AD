@@ -49,7 +49,11 @@ export class EditUsercomponent implements OnInit {
 
         this.userServices.Update(user).then(
             res => {
+<<<<<<< HEAD
                 this.router.navigate(['/UsersList']);
+=======
+                this.router.navigate(['UsersList']);
+>>>>>>> 130f9ef4bd8cfc789a3f9555c53267d8bd77b593
             },
             err => {
                 console.log(err);

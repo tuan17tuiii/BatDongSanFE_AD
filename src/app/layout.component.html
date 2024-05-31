@@ -138,19 +138,30 @@
         </a>
         <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" [routerLink]="['register']"> Add Account </a></li>
+            <li class="nav-item"> <a class="nav-link" [routerLink]="['register']"> Add Account  </a></li>
             <li class="nav-item"> <a class="nav-link" [routerLink]="['AddADs']"> Add Advertisement </a></li>
           </ul>
         </div>
       </li>
       <li class="nav-item menu-items">
+<<<<<<< HEAD
         <a class="nav-link"
           [routerLink]="['/blognews']">
+=======
+        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+>>>>>>> 130f9ef4bd8cfc789a3f9555c53267d8bd77b593
           <span class="menu-icon">
             <i class="mdi mdi-file-document-box"></i>
           </span>
-          <span class="menu-title">News</span>
+          <span class="menu-title">Report</span>
+          <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="auth">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" [routerLink]="['transaction']"> Transaction History  </a></li>
+            <li class="nav-item"> <a class="nav-link" [routerLink]="['AddADs']"> View Statistics  </a></li>
+          </ul>
+        </div>
       </li>
     </ul>
   </nav>

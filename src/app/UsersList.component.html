@@ -32,7 +32,11 @@
                                 }
                             </td>
                             <td>
+<<<<<<< HEAD
                                 <button type="button" class="btn btn-success mr-2" [routerLink]="['/edit-user', {id: user.id}]">Edit</button>
+=======
+                                <button type="button" class="btn btn-success mr-2" [routerLink]="['edit-user', {id: user.id}]">Edit</button>
+>>>>>>> 130f9ef4bd8cfc789a3f9555c53267d8bd77b593
                                 <button type="button" class="btn btn-danger mr-2" (click)="delete(user.id)">Delete</button>
                                 @if (user.status == true) {
                                     <button type="button" class="btn btn-warning mr-2" (click)="Deactive(user.id)">Deactive</button>

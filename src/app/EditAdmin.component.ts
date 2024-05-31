@@ -49,7 +49,7 @@ export class EditAdmincomponent implements OnInit {
 
         this.userServices.Update(user).then(
             res => {
-                this.router.navigate(['/admin/AdminsList']);
+                this.router.navigate(['AdminsList']);
             },
             err => {
                 console.log(err);
