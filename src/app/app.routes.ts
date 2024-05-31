@@ -23,6 +23,7 @@ import { AddADsComponent } from './AddADs.component';
 import { EditADsComponent } from './EditADs.component';
 import { ChangePasswordComponent } from './ChangePassword.component';
 import { Transactioncomponent } from './Transaction.component';
+import { Statisticcomponent } from './Statistic.component';
 
 
 export const routes: Routes = [
@@ -165,6 +166,14 @@ export const routes: Routes = [
             {
                 path: 'transaction',
                 component: Transactioncomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'statistic',
+                component: Statisticcomponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

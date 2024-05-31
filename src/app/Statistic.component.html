@@ -1,0 +1,105 @@
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between">
+                        <h4 class="card-title">Transactions today</h4>
+                        <a [routerLink]="['/transaction']">
+                            <p class="text-muted mb-1 small">View all</p>
+                        </a>
+                    </div>
+                    <div class="preview-list">
+                        <table style="width: 100%;" class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Buyer</th>
+                                    <th>Seller</th>
+                                    <th>Amount</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @for (transaction of transactions; track transaction) {
+                                <tr>
+                                    <td>{{transaction.id}}</td>
+                                    <td>{{buyerNames[transaction.buyerId]}}</td>
+                                    <td>{{sellerNames[transaction.sellerId]}}</td>
+                                    <td>{{transaction.amount}}</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between">
+                        <h4 class="card-title">Number of User</h4>
+                        <a [routerLink]="['/UsersList']">
+                            <p class="text-muted mb-1 small">View all</p>
+                        </a>
+                    </div>
+                    <table class="table table-border">
+                        <thead align="center">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                            </tr>
+
+                        </thead>
+                        <tbody align="center">
+                            @for (user of users; track user) {
+                            <tr>
+                                <td>{{user.id}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.phone}}</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <h4 class="text-muted text-medium">Current number of users: {{countus}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between">
+                        <h4 class="card-title">Number of Admin</h4>
+                        <a [routerLink]="['/AdminsList']">
+                            <p class="text-muted mb-1 small">View all</p>
+                        </a>
+                    </div>
+                    <div class="list-wrapper">
+                        <table class="table table-border">
+                            <thead align="center">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                </tr>
+
+                            </thead>
+                            <tbody align="center">
+                                @for (admin of admins; track admin) {
+                                <tr>
+                                    <td>{{admin.id}}</td>
+                                    <td>{{admin.name}}</td>
+                                    <td>{{admin.phone}}</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <h4 class="text-muted text-medium">Current number of users: {{countad}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
