@@ -39,7 +39,7 @@ export class Logincomponet implements OnInit{
           console.log(res);
           if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
             sessionStorage.setItem('username', this.username);
-            this.router.navigate(['/admin/home']);
+            this.router.navigate(['/home']);
           }
         }else {
           this.messageService.add({ severity: 'error', summary: 'Login Failed !', detail: 'Username or Password is not correct !', key: 'tl', life: 2000 });

@@ -33,6 +33,6 @@ export class LayoutComponent implements OnInit {
 
   Logout(){
     sessionStorage.removeItem('username');
-    this.router.navigate(['']);
+    this.router.navigate(['Login']);
   }
 }

@@ -25,7 +25,7 @@ import { EditADsComponent } from './EditADs.component';
 
 export const routes: Routes = [
     {
-        path: 'admin',
+        path: '',
         component: LayoutComponent,
         canActivate: [AdminSecurity],
         data: {
@@ -33,12 +33,22 @@ export const routes: Routes = [
         },
         children: [
             {
+                path: '',
+                component: Indexcomponet,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: 'admin'
+                },
+                
+            },
+            {
                 path: 'home',
                 component: Indexcomponet,
                 canActivate: [AdminSecurity],
                 data: {
                     role: 'admin'
                 },
+                
             },
             {
                 path: 'chartjs',
@@ -151,7 +161,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "",
+        path: "Login",
         component: Logincomponet
     },
 
