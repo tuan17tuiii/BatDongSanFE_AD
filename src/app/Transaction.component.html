@@ -7,30 +7,21 @@
                     <thead align="center">
                         <tr>
                             <th>ID</th>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th>Buyer</th>
+                            <th>Seller</th>
+                            <th>Transaction Date</th>
+                            <th>Amount</th>
                         </tr>
 
                     </thead>
                     <tbody align="center">
-                        @for (user of users; track user) {
+                        @for (transaction of transactions; track transaction) {
                         <tr>
-                            <td>{{user.id}}</td>
-                            <td>{{user.username}}</td>
-                            <td>{{user.name}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.phone}}</td>
-                            <td>
-                                @if(user.roleId == 1){
-                                Admin
-                                }@else {
-                                User
-                                }
-                            </td>
+                            <td>{{transaction.id}}</td>
+                            <td>{{transaction.buyerId}}</td>
+                            <td>{{transaction.sellerId}}</td>
+                            <td>{{transaction.transactionDate}}</td>
+                            <td>{{transaction.amount}}</td>
                         </tr>
                         }
                     </tbody>

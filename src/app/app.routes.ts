@@ -22,6 +22,7 @@ import { ADscomponet } from './ADs.component';
 import { AddADsComponent } from './AddADs.component';
 import { EditADsComponent } from './EditADs.component';
 import { ChangePasswordComponent } from './ChangePassword.component';
+import { Transactioncomponent } from './Transaction.component';
 
 
 export const routes: Routes = [
@@ -156,6 +157,14 @@ export const routes: Routes = [
             {
                 path: 'changepass',
                 component: ChangePasswordComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'transaction',
+                component: Transactioncomponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

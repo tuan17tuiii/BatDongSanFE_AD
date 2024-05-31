@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { TableModule } from 'primeng/table';
+import { Transaction } from './Entities/Transaction.entities';
+import { TransactionServices } from './Services/Transaction.services';
 
 @Component({
     selector: 'app-root',
@@ -13,10 +15,19 @@ import { TableModule } from 'primeng/table';
     host: { 'collision-id': 'UsersListcomponent' },
 })
 export class Transactioncomponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router) { }
+    constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router) { }
+
+    transactions: Transaction[];
 
     ngOnInit() {
-        
+        this.transactionServices.FindAll().then(
+            res =>{
+                this.transactions = res as Transaction[];
+            },
+            err =>{
+                console.log(err);
+            }
+        )
     }
 
 }
