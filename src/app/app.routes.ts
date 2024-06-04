@@ -23,6 +23,7 @@ import { AddADsComponent } from './AddADs.component';
 import { EditADsComponent } from './EditADs.component';
 import { ChangePasswordComponent } from './ChangePassword.component';
 import { Transactioncomponent } from './Transaction.component';
+import { BlogupnewsComponent } from './blogupnew.component';
 
 
 export const routes: Routes = [
@@ -175,6 +176,13 @@ export const routes: Routes = [
             {
                 path: 'transaction',
                 component: Transactioncomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },     {
+                path: 'blogupnews',
+                component: BlogupnewsComponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

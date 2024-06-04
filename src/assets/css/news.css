@@ -79,7 +79,20 @@
     display: inline-block;
     margin: 10px;
 }
-
+.close-button-up {
+    position: absolute;
+    top: 3px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
 .close-button {
     position: absolute;
     top: 5px;

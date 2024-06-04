@@ -33,25 +33,11 @@ export class Logincomponet implements OnInit {
     let user = new User();
     user.username = this.username;
     user.password = this.password;
-<<<<<<< HEAD
-    this.userServices.LoginAdmin(user).then(
-      res =>{
-        if(res['result']){
-          console.log(res);
-          if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
-            sessionStorage.setItem('username', this.username);
-            this.router.navigate(['/home']);
-          }
-        }else {
-          this.messageService.add({ severity: 'error', summary: 'Login Failed !', detail: 'Username or Password is not correct !', key: 'tl', life: 2000 });
-      }
-=======
 
     this.userServices.findByUsername(this.username).then(
       res => {
         let userRole = res as User;
         user.roleId = userRole.roleId;
->>>>>>> 130f9ef4bd8cfc789a3f9555c53267d8bd77b593
       },
       err => {
         console.log(err)

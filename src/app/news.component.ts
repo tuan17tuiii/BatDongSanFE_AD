@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-drop';
 import { EditorModule } from 'primeng/editor';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { ImageRealStateAPIService } from './Services/image.service';
   styleUrl: '../assets/css/news.css'
 })
 export class NewsComponent implements OnInit, AfterViewInit {
-  constructor(private newssevice :NewsService,private imgservices :ImageRealStateAPIService){
+  constructor(private newssevice :NewsService,private imgservices :ImageRealStateAPIService, private router: Router){
 
   }
   news: any= {};
@@ -34,36 +34,44 @@ title:string=""
    
   }
 btn() {
+let x=confirm("are you sure")
+if(x){
+  console.log(this.text);
+  console.log(this.files);
+  console.log(this.imagestr);
+  console.log(this.tagname);
+  console.log(this.title);
+ let newsv :News=new News
+ newsv.title= this.title
+ newsv.content=  this.text
+ newsv.tag=this.tagname
 
-    console.log(this.text);
-    console.log(this.files);
-    console.log(this.imagestr);
-    console.log(this.tagname);
-    console.log(this.title);
-   let newsv :News=new News
-   newsv.title= this.title
-   newsv.content=  this.text
-   newsv.tag=this.tagname
+  this.newssevice.Create(newsv).then(
+    res=>{
+      console.log(newsv)
+      console.log(res)
+      let news_idd=res['news_id'] as number;
+      news_idd= (news_idd*-1);
+      let  news_id= news_idd.toString();
+      let formData = new FormData();//tao form data
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('files', this.files[i]);
+        console.log(formData)
 
-    this.newssevice.Create(newsv).then(
-      res=>{
-        console.log(newsv)
-        console.log(res)
-        let news_idd=res['news_id'] as number;
-        news_idd= (news_idd*-1);
-        let  news_id= news_idd.toString();
-        let formData = new FormData();//tao form data
-        for (let i = 0; i < this.files.length; i++) {
-          formData.append('files', this.files[i]);
-          console.log(formData)
-
-          formData.append('id', news_id)
-       
-        }
-      this.imgservices.uploads(formData).then()
-
+        formData.append('id', news_id)
+     
       }
-    )
+    this.imgservices.uploads(formData).then(
+res=>{
+  this.router.navigate['blogupnews']
+})
+    }
+  )
+  
+}else{
+  alert("no")
+}
+    
 }
 selectFiles(event: any): void {
   this.images = [];
