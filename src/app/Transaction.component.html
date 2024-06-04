@@ -1,10 +1,18 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h2 class="card-title" align="center">Users Account List</h2>
+            <h2 class="card-title" align="center">Transaction List</h2>
+            <div class="container mb-3">
+                <div class="row">
+                    <div class="col-md-6"><p-calendar [(ngModel)]="From" [style]="{'width': '100%'}" placeholder="Date From" (onClose)="Search()"/></div>
+                    <div class="col-md-6"><p-calendar [(ngModel)]="To" [style]="{'width': '100%'}" placeholder="Date To" (onClose)="Search()"/></div>
+                    <p-toast position="top-left" key="tl" />
+                </div>
+            </div>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead align="center">
+                <p-table [value]="transactions" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+                    [rowsPerPageOptions]="[5, 10, 20]" id="myTable">
+                    <ng-template pTemplate="header">
                         <tr>
                             <th>ID</th>
                             <th>Buyer</th>
@@ -13,19 +21,17 @@
                             <th>Amount</th>
                         </tr>
 
-                    </thead>
-                    <tbody align="center">
-                        @for (transaction of transactions; track transaction) {
+                    </ng-template>
+                    <ng-template pTemplate="body" let-transaction>
                         <tr>
                             <td>{{transaction.id}}</td>
-                            <td>{{transaction.buyerId}}</td>
-                            <td>{{transaction.sellerId}}</td>
+                            <td>{{buyerNames[transaction.buyerId]}}</td>
+                            <td>{{sellerNames[transaction.sellerId]}}</td>
                             <td>{{transaction.transactionDate}}</td>
                             <td>{{transaction.amount}}</td>
                         </tr>
-                        }
-                    </tbody>
-                </table>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </div>

@@ -17,22 +17,33 @@ import { RippleModule } from 'primeng/ripple';
     selector: 'app-root',
     standalone: true,
     imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, CalendarModule, ToastModule, ButtonModule, RippleModule],
-    templateUrl: 'Transaction.component.html',
+    templateUrl: 'Statistic.component.html',
     styleUrl: './app.component.css',
-    host: { 'collision-id': 'UsersListcomponent' },
+    host: { 'collision-id': 'Statisticcomponent' },
     providers: [MessageService]
 })
-export class Transactioncomponent implements OnInit {
+export class Statisticcomponent implements OnInit {
     constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router, private userServices: UserServices, private messageService: MessageService) { }
 
     transactions: Transaction[];
+    users: User[];
+    admins: User[];
     buyerNames: { [key: number]: string } = {};
     sellerNames: { [key: number]: string } = {};
-    From: string;
-    To: string;
+    today: string = formatDate(new Date(), 'dd-MM-yyyy', 'en-US');
+    countus: number = 0;
+    countad: number = 0;
 
     ngOnInit() {
         // Fetch buyer names
+        this.TransactionToday();
+
+        this.NumberOfUser();
+
+        this.NumberOfAdmin();
+    }
+
+    TransactionToday() {
         this.userServices.FindAll().then(
             res => {
                 let buyers: User[] = res as User[];
@@ -47,7 +58,7 @@ export class Transactioncomponent implements OnInit {
                             this.sellerNames[seller.id] = seller.username;
                         });
                         // Fetch all transactions
-                        this.transactionServices.FindAll().then(
+                        this.transactionServices.Today(this.today).then(
                             res => {
                                 this.transactions = res as Transaction[];
                             },
@@ -65,20 +76,29 @@ export class Transactioncomponent implements OnInit {
                 console.log(err);
             }
         )
-
     }
 
-    Search() {
-        let DateFrom = formatDate(this.From, 'dd-MM-yyyy', 'en-US');
-        let DateTo = formatDate(this.To, 'dd-MM-yyyy', 'en-US');
+    NumberOfUser(){
+        this.userServices.FindAllUser().then(
+            (res: User[]) => {
+                this.users = res.slice(0, 8); // Get the first 5 users
+                this.users.forEach(user =>{
+                    this.countus ++;
+                });
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
 
-        this.transactionServices.DateRange(DateFrom, DateTo).then(
-            res => {
-                if (res) {
-                    this.transactions = res as Transaction[];
-                } else {
-                    this.messageService.add({ severity: 'error', summary: 'Search Failed', detail: 'Cannot Find Transaction With The Corresponding Date Range', key: 'tl', life: 2000 });
-                }
+    NumberOfAdmin(){
+        this.userServices.FindAllAdmin().then(
+            (res: User[]) => {
+                this.admins = res.slice(0, 8); // Get the first 8 users
+                this.admins.forEach(admin =>{
+                    this.countad ++;
+                });
             },
             err => {
                 console.log(err);
