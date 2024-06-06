@@ -3,6 +3,7 @@ import { BaseUrlService } from "./BaseUrlServices.services";
 import { HttpClient } from "@angular/common/http";
 import { lastValueFrom } from "rxjs";
 import { ADs } from "../Entities/ADs.entities";
+import { RealstateType } from "../Entities/RealstateType.entities";
 
 
 @Injectable({
@@ -16,5 +17,13 @@ export class RealstateTypeServices{
 
     async FindAll(){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'typerealstate/findAll'));
+    }
+
+    async Create(realstateType: RealstateType){
+        return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'typerealstate/Create', realstateType));
+    }
+
+    async Delete(id: number){
+        return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'typerealstate/Delete/' + id));
     }
 }

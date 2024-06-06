@@ -1,0 +1,43 @@
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title" align="center">RealState List</h2>
+            <div class="container mb-3">
+                <div class="row">
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <p-table [value]="realstates_types" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem'}"
+                    [rowsPerPageOptions]="[5, 10, 20]" id="myTable">
+                    <ng-template pTemplate="header">
+                        <tr align="center">
+                            <th pSortableColumn="id" style="width:20%">
+                                ID <p-sortIcon field="id" />
+                            </th>
+                            <th pSortableColumn="type" style="width:20%">
+                                Type <p-sortIcon field="type" />
+                            </th>
+                            <th style="width:20%">Action</th>
+                        </tr>
+
+                    </ng-template>
+                    <ng-template pTemplate="body" let-realstates_type>
+                        <tr align="center">
+                            <td>{{realstates_type.id}}</td>
+                            <td>{{realstates_type.type}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success mr-2"
+                                    [routerLink]="['/edit-cat', {id: realstates_type.id}]">Edit</button>
+                                <p-toast />
+                                <p-confirmPopup />
+                                <p-button (click)="delete(realstates_type.id, $event)" label="Delete" [outlined]="true"
+                                    styleClass="btn btn-danger mr-2" />
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

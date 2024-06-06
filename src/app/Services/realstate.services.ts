@@ -41,4 +41,10 @@ export class RealStateService  {
     async Update(realstate: RealState){
         return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'realstate/Update', realstate));
     }
+    async Delete(id: number){
+        return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'realstate/Delete/' + id));
+    }
+    async FindByType(id: number){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'realstate/findByType/' + id));
+    }
 }

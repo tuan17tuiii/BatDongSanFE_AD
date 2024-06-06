@@ -27,6 +27,8 @@ import { BlogupnewsComponent } from './blogupnew.component';
 import { Statisticcomponent } from './Statistic.component';
 import { RealState } from './Entities/realstate.entities';
 import { RealStatecomponent } from './RealState.component';
+import { RealStateTypecomponent } from './realstate_type.component';
+import { AddCategoryComponent } from './AddCategory.component';
 
 
 export const routes: Routes = [
@@ -35,7 +37,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         canActivate: [AdminSecurity],
         data: {
-            role: '1'
+            role: '1, 3'
         },
         children: [
             {
@@ -43,7 +45,7 @@ export const routes: Routes = [
                 component: Indexcomponet,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: 'admin'
+                    role: '1'
                 },
                 
             },
@@ -52,7 +54,7 @@ export const routes: Routes = [
                 component: Indexcomponet,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: '1'
+                    role: '1, 3'
                 },
                 
             },
@@ -117,7 +119,7 @@ export const routes: Routes = [
                 component: RegisterComponent,
                 canActivate: [AdminSecurity],
                 data: {
-                    role: '1'
+                    role: '3'
                 },
             },
             {
@@ -202,6 +204,22 @@ export const routes: Routes = [
             {
                 path: 'realstate',
                 component: RealStatecomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'realstate_cat',
+                component: RealStateTypecomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'Addcat',
+                component: AddCategoryComponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

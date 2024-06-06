@@ -3,52 +3,61 @@
         <div class="card-body">
             <h2 class="card-title" align="center">Users Account List</h2>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead align="center">
-                        <tr>
-                            <th>ID</th>
+                <p-table [value]="users" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem'}"
+                    [rowsPerPageOptions]="[5, 10, 20]" id="myTable" [style]="{'white-space': 'nowrap'}">
+                    <ng-template pTemplate="header">
+                        <tr align="center">
+                            <th pSortableColumn="id" style="width:20%">
+                                ID <p-sortIcon field="id"/>
+                            </th>
                             <th>Avatar</th>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th pSortableColumn="username" style="width:20%">
+                                Username <p-sortIcon field="username"/>
+                            </th>
+                            <th pSortableColumn="name" style="width:20%">
+                                Name <p-sortIcon field="name"/>
+                            </th>
+                            <th pSortableColumn="email" style="width:20%">
+                                Email <p-sortIcon field="email"/>
+                            </th>
                             <th>Phone</th>
                             <th>Role</th>
                             <th>Action</th>
                         </tr>
 
-                    </thead>
-                    <tbody align="center">
-                        @for (user of users; track user) {
-                            <tr>
-                                <td>{{user.id}}
-                            </td>
-                            <td><img src="{{user.avatar}}"></td>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-user>
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td><img src="{{user.avatar}}" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                             <td>{{user.username}}</td>
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.phone}}</td>
                             <td>
                                 @if(user.roleId == 1){
-                                    Admin
+                                Admin
                                 }@else {
-                                    User
+                                User
                                 }
                             </td>
                             <td>
 
-                                <button type="button" class="btn btn-success mr-2" [routerLink]="['/edit-user', {id: user.id}]">Edit</button>
-                                <button type="button" class="btn btn-danger mr-2" (click)="delete(user.id)">Delete</button>
+                                <button type="button" class="btn btn-success mr-2"
+                                    [routerLink]="['/edit-user', {id: user.id}]">Edit</button>
+                                <button type="button" class="btn btn-danger mr-2"
+                                    (click)="delete(user.id)">Delete</button>
                                 @if (user.status == true) {
-                                    <button type="button" class="btn btn-warning mr-2" (click)="Deactive(user.id)">Deactive</button>
+                                <button type="button" class="btn btn-warning mr-2"
+                                    (click)="Deactive(user.id)">Deactive</button>
                                 }@else {
-                                    <button type="button" class="btn btn-success mr-2" (click)="Active(user.id)">Active</button>
+                                <button type="button" class="btn btn-success mr-2"
+                                    (click)="Active(user.id)">Active</button>
                                 }
                             </td>
-                            <td><Span style="color: red;">{{msg}}</Span></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </div>

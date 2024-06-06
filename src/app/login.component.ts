@@ -48,7 +48,7 @@ export class Logincomponet implements OnInit {
       res => {
         console.log(res);
         if (res['result']) {
-          if (user.roleId == 1) {
+          if (user.roleId == 1 || user.roleId == 3) {
             if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
               sessionStorage.setItem('username', this.username);
               sessionStorage.setItem('role', String(user.roleId));

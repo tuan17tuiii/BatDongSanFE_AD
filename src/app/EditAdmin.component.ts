@@ -34,7 +34,8 @@ export class EditAdmincomponent implements OnInit {
                         password: user.password,
                         status: user.status,
                         securityCode: user.securityCode,
-                        advertisementId: user.advertisement_id
+                        advertisementId: user.advertisement_id,
+                        avatar: user.avatar
                     });
                 },
                 err => {
@@ -46,7 +47,10 @@ export class EditAdmincomponent implements OnInit {
 
     Save() {
         let user: User = this.InforForm.value as User;
-
+        let avartarurl = user.avatar;
+        let avatar = avartarurl.lastIndexOf('/');
+        user.avatar = avartarurl.slice(avatar + 1);
+        
         this.userServices.Update(user).then(
             res => {
                 this.router.navigate(['AdminsList']);

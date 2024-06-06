@@ -3,48 +3,60 @@
         <div class="card-body">
             <h2 class="card-title" align="center">Admins Account List</h2>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead align="center">
-                        <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                <p-table [value]="admins" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem'}"
+                    [rowsPerPageOptions]="[5, 10, 20]" id="myTable" [style]="{'white-space': 'nowrap'}">
+                    <ng-template pTemplate="header">
+                        <tr align="center">
+                            <th pSortableColumn="id" style="width:20%">
+                                ID <p-sortIcon field="id"/>
+                            </th>
+                            <th>Avatar</th>
+                            <th pSortableColumn="username" style="width:20%">
+                                Username <p-sortIcon field="username"/>
+                            </th>
+                            <th pSortableColumn="name" style="width:20%">
+                                Name <p-sortIcon field="name"/>
+                            </th>
+                            <th pSortableColumn="email" style="width:20%">
+                                Email <p-sortIcon field="email"/>
+                            </th>
                             <th>Phone</th>
                             <th>Role</th>
                             <th>Action</th>
                         </tr>
 
-                    </thead>
-                    <tbody align="center">
-                        @for (admin of admins; track admin) {
-                            <tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-admin>
+                        <tr>
                             <td>{{admin.id}}</td>
+                            <td><img src="{{admin.avatar}}" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                             <td>{{admin.username}}</td>
                             <td>{{admin.name}}</td>
                             <td>{{admin.email}}</td>
                             <td>{{admin.phone}}</td>
                             <td>
                                 @if(admin.roleId == 1){
-                                    Admin
+                                Admin
                                 }@else {
-                                    User
+                                User
                                 }
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success mr-2" [routerLink]="['/edit-admin', {id: admin.id}]">Edit</button>
-                                <button type="button" class="btn btn-danger mr-2" (click)="delete(admin.id)">Delete</button>
+                                <button type="button" class="btn btn-success mr-2"
+                                    [routerLink]="['/edit-admin', {id: admin.id}]">Edit</button>
+                                <button type="button" class="btn btn-danger mr-2"
+                                    (click)="delete(admin.id)">Delete</button>
                                 @if (admin.status == true) {
-                                    <button type="button" class="btn btn-warning mr-2" (click)="Deactive(admin.id)">Deactive</button>
+                                <button type="button" class="btn btn-warning mr-2"
+                                    (click)="Deactive(admin.id)">Deactive</button>
                                 }@else {
-                                    <button type="button" class="btn btn-success mr-2" (click)="Active(admin.id)">Active</button>
+                                <button type="button" class="btn btn-success mr-2"
+                                    (click)="Active(admin.id)">Active</button>
                                 }
                             </td>
-                            <td><Span style="color: red;">{{msg}}</Span></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </div>

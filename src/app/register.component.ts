@@ -30,6 +30,9 @@ export class RegisterComponent implements OnInit {
   password: string;
   Roles: Role[];
   msg: string;
+  user_name: string;
+  avatar: string;
+  role: number;
 
   roleValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -54,6 +57,20 @@ export class RegisterComponent implements OnInit {
         console.log(err);
       }
     )
+
+    if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
+      this.userServices.findByUsername(sessionStorage.getItem('username')).then(
+        res =>{
+          let user : User = res as User;
+          this.user_name = user.username;
+          this.avatar = user.avatar;
+          this.role = user.roleId;
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+    }
   }
 
   Register() {

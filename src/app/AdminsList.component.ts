@@ -37,7 +37,7 @@ export class AdminsListcomponent implements OnInit {
             this.userServices.Delete(id).then(
                 res => {
                     if (res) {
-                        location.reload();
+                        this.ngOnInit();
                     } else {
                         this.msg = 'Failed !';
                     }
@@ -55,6 +55,9 @@ export class AdminsListcomponent implements OnInit {
                 if (res) {
                     let user = res as User;
                     user.status = true;
+                    let avartarurl = user.avatar;
+                    let avatar = avartarurl.lastIndexOf('/');
+                    user.avatar = avartarurl.slice(avatar + 1);
                     this.userServices.Update(user).then(
                         res =>{
                             this.ngOnInit();
@@ -77,6 +80,9 @@ export class AdminsListcomponent implements OnInit {
                 if (res) {
                     let user = res as User;
                     user.status = false;
+                    let avartarurl = user.avatar;
+                    let avatar = avartarurl.lastIndexOf('/');
+                    user.avatar = avartarurl.slice(avatar + 1);
                     this.userServices.Update(user).then(
                         res =>{
                             this.ngOnInit();

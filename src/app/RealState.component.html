@@ -11,25 +11,59 @@
                 <p-table [value]="realstates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem'}"
                     [rowsPerPageOptions]="[5, 10, 20]" id="myTable" [style]="{'white-space': 'nowrap'}">
                     <ng-template pTemplate="header">
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
+                        <tr align="center">
+                            <th pSortableColumn="id" style="width:20%">
+                                ID <p-sortIcon field="id"/>
+                            </th>
+                            <th pSortableColumn="title" style="width:20%">
+                                Title <p-sortIcon field="title"/>
+                            </th>
                             <th>Describe</th>
-                            <th>Price</th>
-                            <th>Type</th>
-                            <th>Acreage</th>
-                            <th>Bedrooms</th>
-                            <th>Bathrooms</th>
-                            <th>Status</th>
-                            <th>Create At</th>
-                            <th>Region</th>
-                            <th>City</th>
-                            <th>Street</th>
-                            <th>Seller</th>
-                            <th>Transaction_Type</th>
-                            <th>Sold</th>
-                            <th>Expired</th>
-                            <th>End Date</th>
+                            <th pSortableColumn="price" style="width:20%">
+                                Price <p-sortIcon field="price"/>
+                            </th>
+                            <th pSortableColumn="type" style="width:20%">
+                                Type <p-sortIcon field="type"/>
+                            </th>
+                            <th pSortableColumn="acreage" style="width:20%">
+                                Acreage <p-sortIcon field="acreage"/>
+                            </th>
+                            <th pSortableColumn="bedrooms" style="width:20%">
+                                Bedrooms <p-sortIcon field="bedrooms"/>
+                            </th>
+                            <th pSortableColumn="bathrooms" style="width:20%">
+                                Bathrooms <p-sortIcon field="bathrooms"/>
+                            </th>
+                            <th pSortableColumn="status" style="width:20%">
+                                Status <p-sortIcon field="status"/>
+                            </th>
+                            <th pSortableColumn="createdAt" style="width:20%">
+                                Create At <p-sortIcon field="createdAt"/>
+                            </th>
+                            <th pSortableColumn="region" style="width:20%">
+                                Region <p-sortIcon field="region"/>
+                            </th>
+                            <th pSortableColumn="city" style="width:20%">
+                                City <p-sortIcon field="city"/>
+                            </th>
+                            <th pSortableColumn="street" style="width:20%">
+                                Street <p-sortIcon field="street"/>
+                            </th>
+                            <th pSortableColumn="usersell_Id" style="width:20%">
+                                Seller <p-sortIcon field="usersell_Id"/>
+                            </th>
+                            <th pSortableColumn="typeRealState" style="width:20%">
+                                Transaction_Type <p-sortIcon field="typeRealState"/>
+                            </th>
+                            <th pSortableColumn="sold" style="width:20%">
+                                Sold <p-sortIcon field="sold"/>
+                            </th>
+                            <th pSortableColumn="expired" style="width:20%">
+                                Expired <p-sortIcon field="expired"/>
+                            </th>
+                            <th pSortableColumn="created_end" style="width:20%">
+                                End Date <p-sortIcon field="created_end"/>
+                            </th>
                         </tr>
 
                     </ng-template>

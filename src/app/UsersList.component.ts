@@ -24,7 +24,6 @@ export class UsersListcomponent implements OnInit {
         this.userServices.FindAllUser().then(
             res => {
                 this.users = res as User[];
-                console.log(res);
             },
             err => {
                 console.log(err);
@@ -38,7 +37,7 @@ export class UsersListcomponent implements OnInit {
             this.userServices.Delete(id).then(
                 res => {
                     if (res) {
-                        location.reload();
+                        this.ngOnInit();
                     } else {
                         this.msg = 'Failed !';
                     }
@@ -56,6 +55,9 @@ export class UsersListcomponent implements OnInit {
                 if (res) {
                     let user = res as User;
                     user.status = true;
+                    let avartarurl = user.avatar;
+                    let avatar = avartarurl.lastIndexOf('/');
+                    user.avatar = avartarurl.slice(avatar + 1);
                     this.userServices.Update(user).then(
                         res => {
                             this.ngOnInit();
@@ -77,6 +79,9 @@ export class UsersListcomponent implements OnInit {
             res => {
                 if (res) {
                     let user = res as User;
+                    let avartarurl = user.avatar;
+                    let avatar = avartarurl.lastIndexOf('/');
+                    user.avatar = avartarurl.slice(avatar + 1);
                     user.status = false;
                     this.userServices.Update(user).then(
                         res => {

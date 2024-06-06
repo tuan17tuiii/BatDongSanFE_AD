@@ -157,14 +157,14 @@
                             </thead>
                             <tbody align="center">
                                 @for (ads of ADs; track ads) {
-                                    @if (ads.status == true) {
-                                        <tr>
-                                            <td>{{ads.id}}</td>
-                                            <td>{{ads.advertisementName}}</td>
-                                            <td>{{ads.price}}</td>
-                                            <td>{{ads.status}}</td>
-                                        </tr>
-                                    }
+                                @if (ads.status == true) {
+                                <tr>
+                                    <td>{{ads.id}}</td>
+                                    <td>{{ads.advertisementName}}</td>
+                                    <td>{{ads.price}}</td>
+                                    <td>{{ads.status}}</td>
+                                </tr>
+                                }
                                 }
                             </tbody>
                         </table>
@@ -196,18 +196,96 @@
                             </thead>
                             <tbody align="center">
                                 @for (ads of ADs; track ads) {
-                                    @if (ads.status == false) {
-                                        <tr>
-                                            <td>{{ads.id}}</td>
-                                            <td>{{ads.advertisementName}}</td>
-                                            <td>{{ads.price}}</td>
-                                            <td>{{ads.status}}</td>
-                                        </tr>
-                                    }
+                                @if (ads.status == false) {
+                                <tr>
+                                    <td>{{ads.id}}</td>
+                                    <td>{{ads.advertisementName}}</td>
+                                    <td>{{ads.price}}</td>
+                                    <td>{{ads.status}}</td>
+                                </tr>
+                                }
                                 }
                             </tbody>
                         </table>
                         <h4 class="text-muted text-medium">Current number of Activated ADs: {{countDeactivatedAds}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xl-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between">
+                        <h4 class="card-title">Unapproved Post</h4>
+                        <a [routerLink]="['/AdminsList']">
+                            <p class="text-muted mb-1 small">View all</p>
+                        </a>
+                    </div>
+                    <div class="list-wrapper">
+                        <table class="table table-border">
+                            <thead align="center">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Created at</th>
+                                </tr>
+
+                            </thead>
+                            <tbody align="center">
+                                @for (realstate of realstates; track realstate) {
+                                @if (realstate.status == false) {
+                                <tr>
+                                    <td>{{realstate.id}}</td>
+                                    <td>{{realstate.title}}</td>
+                                    <td>{{realstate.price}}</td>
+                                    <td>{{realstate.createdAt}}</td>
+                                </tr>
+                                }
+                                }
+                            </tbody>
+                        </table>
+                        <h4 class="text-muted text-medium">Current number of Activated ADs: {{countUnapproved}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xl-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between">
+                        <h4 class="card-title">Approved Post</h4>
+                        <a [routerLink]="['/AdminsList']">
+                            <p class="text-muted mb-1 small">View all</p>
+                        </a>
+                    </div>
+                    <div class="list-wrapper">
+                        <table class="table table-border">
+                            <thead align="center">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Created at</th>
+                                </tr>
+
+                            </thead>
+                            <tbody align="center">
+                                @for (realstate of realstates; track realstate) {
+                                @if (realstate.status == true) {
+                                <tr>
+                                    <td>{{realstate.id}}</td>
+                                    <td>{{realstate.title}}</td>
+                                    <td>{{realstate.price}}</td>
+                                    <td>{{realstate.createdAt}}</td>
+                                </tr>
+                                }
+                                }
+                            </tbody>
+                        </table>
+                        <h4 class="text-muted text-medium">Current number of Activated ADs: {{countApproved}}</h4>
                     </div>
                 </div>
             </div>

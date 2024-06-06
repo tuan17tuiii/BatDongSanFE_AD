@@ -10,9 +10,14 @@
                 <label>Role</label>
                 <select class="form-control p_input" formControlName="roleId">
                   <option value="all">All</option>
-                  @for (role of Roles; track role) {
-                  <option value="{{role.id}}">{{role.name}}</option>
+                  @if(role == 3){
+                    @for (role of Roles; track role) {
+                      <option value="{{role.id}}">{{role.name}}</option>
+                      }
+                  }@else {
+                    <option value="2">User</option>
                   }
+                  
                 </select>
                 @if (registerForm.get('roleId').touched) {
                 @if (registerForm.hasError('required',['roleId'])) {

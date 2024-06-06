@@ -16,6 +16,8 @@ import { RealstateType } from './Entities/RealstateType.entities';
 import { RealstateTypeServices } from './Services/RealstateType.services';
 import { ADsServices } from './Services/ADs.services';
 import { ADs } from './Entities/ADs.entities';
+import { RealStateService } from './Services/realstate.services';
+import { RealState } from './Entities/realstate.entities';
 
 @Component({
     selector: 'app-root',
@@ -27,21 +29,25 @@ import { ADs } from './Entities/ADs.entities';
     providers: [MessageService]
 })
 export class Statisticcomponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router, private userServices: UserServices, private messageService: MessageService, private realstateTypeService: RealstateTypeServices, private adsServices: ADsServices) { }
+    constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router, private userServices: UserServices, private messageService: MessageService, private realstateTypeService: RealstateTypeServices, private adsServices: ADsServices, private realStateService: RealStateService) { }
 
     transactions: Transaction[];
     ADs: ADs[];
     users: User[];
     admins: User[];
+    realstates: RealState[];
     realstateType: RealstateType[];
     buyerNames: { [key: number]: string } = {};
     sellerNames: { [key: number]: string } = {};
+    seller: { [key: number]: string } = {};
     today: string = formatDate(new Date(), 'dd-MM-yyyy', 'en-US');
     countus: number = 0;
     countad: number = 0;
     counttype: number = 0;
     countActivatedAds: number = 0;
     countDeactivatedAds: number = 0;
+    countUnapproved: number = 0;
+    countApproved: number = 0;
 
     ngOnInit() {
         // Fetch buyer names
@@ -54,6 +60,8 @@ export class Statisticcomponent implements OnInit {
         this.RealstateType();
 
         this.Advertisement();
+
+        this.Realstate();
     }
 
     TransactionToday() {
@@ -149,5 +157,34 @@ export class Statisticcomponent implements OnInit {
               console.log(err);
             }
           )
+    }
+
+    Realstate(){
+        this.userServices.FindAll().then(
+            res => {
+                let sellers: User[] = res as User[];
+                sellers.forEach(seller => {
+                    this.sellerNames[seller.id] = seller.username;
+                });
+                this.realStateService.findAll2().then(
+                    (res: RealState[]) => {
+                        this.realstates = res.slice(0, 8);
+                        this.realstates.forEach(realstate =>{
+                            if(realstate.status == true){
+                                this.countApproved ++;
+                            }else{
+                                this.countUnapproved ++;
+                            }
+                        });
+                    },
+                    err => {
+                        console.log(err);
+                    }
+                )
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 }

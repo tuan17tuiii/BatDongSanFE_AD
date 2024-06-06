@@ -27,14 +27,15 @@ export class EditUsercomponent implements OnInit {
                     this.InforForm = this.formBuilder.group({
                         id: user.id,
                         username: user.username,
-                        email: [user.email,[Validators.required]],
-                        name: [user.name,[Validators.required]],
-                        phone: [user.phone,[Validators.required]],
+                        email: [user.email, [Validators.required]],
+                        name: [user.name, [Validators.required]],
+                        phone: [user.phone, [Validators.required]],
                         roleId: user.roleId,
                         password: user.password,
                         status: user.status,
                         securityCode: user.securityCode,
-                        advertisementId: user.advertisement_id
+                        advertisementId: user.advertisement_id,
+                        avatar: user.avatar
                     });
                 },
                 err => {
@@ -46,7 +47,9 @@ export class EditUsercomponent implements OnInit {
 
     Save() {
         let user: User = this.InforForm.value as User;
-
+        let avartarurl = user.avatar;
+        let avatar = avartarurl.lastIndexOf('/');
+        user.avatar = avartarurl.slice(avatar + 1);
         this.userServices.Update(user).then(
             res => {
 
