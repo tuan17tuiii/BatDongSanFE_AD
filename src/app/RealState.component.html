@@ -1,0 +1,82 @@
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title" align="center">RealState List</h2>
+            <div class="container mb-3">
+                <div class="row">
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <p-table [value]="realstates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem'}"
+                    [rowsPerPageOptions]="[5, 10, 20]" id="myTable" [style]="{'white-space': 'nowrap'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Describe</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                            <th>Acreage</th>
+                            <th>Bedrooms</th>
+                            <th>Bathrooms</th>
+                            <th>Status</th>
+                            <th>Create At</th>
+                            <th>Region</th>
+                            <th>City</th>
+                            <th>Street</th>
+                            <th>Seller</th>
+                            <th>Transaction_Type</th>
+                            <th>Sold</th>
+                            <th>Expired</th>
+                            <th>End Date</th>
+                        </tr>
+
+                    </ng-template>
+                    <ng-template pTemplate="body" let-realstate>
+                        <tr>
+                            <td>{{realstate.id}}</td>
+                            <td>{{realstate.title}}</td>
+                            <td>{{realstate.describe}}</td>
+                            <td>{{realstate.price}}</td>
+                            <td>{{realstate.type}}</td>
+                            <td>{{realstate.acreage}}</td>
+                            <td>{{realstate.bedrooms}}</td>
+                            <td>{{realstate.bathrooms}}</td>
+                            <td>
+                                @if (realstate.status == true) {
+                                <button type="button" class="btn btn-warning mr-2"
+                                    (click)="Deactive(realstate.id)">UnApproved</button>
+                                }@else {
+                                <button type="button" class="btn btn-success mr-2"
+                                    (click)="Active(realstate.id)">Approved</button>
+                                }
+                            </td>
+                            <td>{{realstate.createdAt}}</td>
+                            <td>{{realstate.region}}</td>
+                            <td>{{realstate.city}}</td>
+                            <td>{{realstate.street}}</td>
+                            <td>{{sellerNames[realstate.usersell_Id]}}</td>
+                            <td>{{realstate.typeRealState}}</td>
+                            <td>
+                                @if(realstate.sold == true){
+                                Sold
+                                }@else {
+                                Unsold
+                                }
+                            </td>
+                            <td>
+                                @if(realstate.expired == true){
+                                Expired
+                                }@else {
+                                Not Expired
+                                }
+                            </td>
+                            <td>{{realstate.created_end}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

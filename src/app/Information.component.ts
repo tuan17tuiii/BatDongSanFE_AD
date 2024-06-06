@@ -8,11 +8,12 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule,RouterOutlet,RouterLink, ToastModule, ButtonModule, RippleModule],
+  imports: [FormsModule, ReactiveFormsModule , RouterOutlet, RouterLink, ToastModule, ButtonModule, RippleModule, FileUploadModule],
   templateUrl: 'Information.component.html',
   styleUrl: './app.component.css',
   host: { 'collision-id': 'Informationcomponent' },
@@ -24,6 +25,9 @@ export class Informationcomponent implements OnInit{
     InforForm: FormGroup;
     username: string;
     name: string;
+    avatar: string;
+    file: File;
+    url: string;
 
     ngOnInit(){
         if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
@@ -34,12 +38,14 @@ export class Informationcomponent implements OnInit{
             this.userServices.findByUsername(this.name).then(
                 res =>{
                     let user: User = res as User;
+                    this.avatar = user.avatar;
                     this.InforForm = this.formBuilder.group({
                         id: user.id,
                         username: [user.username,[Validators.required]],
                         email: [user.email,[Validators.required]],
                         name: [user.name,[Validators.required]],
                         phone: [user.phone,[Validators.required]],
+                        avatar: user.avatar,
                         roleId: user.roleId,   
                         password: user.password,
                         status: user.status,
@@ -51,6 +57,24 @@ export class Informationcomponent implements OnInit{
                 }
             )
           }           
+    }
+
+    SelectFile(evt: any){
+        this.file = evt.target.files;
+    }
+
+    Upload(){
+        let formData = new FormData();
+        formData.append('file', this.file);
+        this.userServices.Upload(formData).then(
+            res => {
+                this.url = res['Url'];
+                this.messageService.add({ severity: 'success', summary: 'Success !', detail: 'Update Avatar Success', key: 'tl', life: 2000 });
+            },
+            error =>{
+
+            }
+        );
     }
   
     Save(){

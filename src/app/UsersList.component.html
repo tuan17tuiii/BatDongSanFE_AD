@@ -7,6 +7,7 @@
                     <thead align="center">
                         <tr>
                             <th>ID</th>
+                            <th>Avatar</th>
                             <th>Username</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -19,7 +20,9 @@
                     <tbody align="center">
                         @for (user of users; track user) {
                             <tr>
-                                <td>{{user.id}}</td>
+                                <td>{{user.id}}
+                            </td>
+                            <td><img src="{{user.avatar}}"></td>
                             <td>{{user.username}}</td>
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>

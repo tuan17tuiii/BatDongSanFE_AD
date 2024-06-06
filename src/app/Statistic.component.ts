@@ -12,6 +12,10 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { RealstateType } from './Entities/RealstateType.entities';
+import { RealstateTypeServices } from './Services/RealstateType.services';
+import { ADsServices } from './Services/ADs.services';
+import { ADs } from './Entities/ADs.entities';
 
 @Component({
     selector: 'app-root',
@@ -23,16 +27,21 @@ import { RippleModule } from 'primeng/ripple';
     providers: [MessageService]
 })
 export class Statisticcomponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router, private userServices: UserServices, private messageService: MessageService) { }
+    constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router, private userServices: UserServices, private messageService: MessageService, private realstateTypeService: RealstateTypeServices, private adsServices: ADsServices) { }
 
     transactions: Transaction[];
+    ADs: ADs[];
     users: User[];
     admins: User[];
+    realstateType: RealstateType[];
     buyerNames: { [key: number]: string } = {};
     sellerNames: { [key: number]: string } = {};
     today: string = formatDate(new Date(), 'dd-MM-yyyy', 'en-US');
     countus: number = 0;
     countad: number = 0;
+    counttype: number = 0;
+    countActivatedAds: number = 0;
+    countDeactivatedAds: number = 0;
 
     ngOnInit() {
         // Fetch buyer names
@@ -41,6 +50,10 @@ export class Statisticcomponent implements OnInit {
         this.NumberOfUser();
 
         this.NumberOfAdmin();
+
+        this.RealstateType();
+
+        this.Advertisement();
     }
 
     TransactionToday() {
@@ -104,5 +117,37 @@ export class Statisticcomponent implements OnInit {
                 console.log(err);
             }
         )
+    }
+
+    RealstateType(){
+        this.realstateTypeService.FindAll().then(
+            (res : RealstateType[]) =>{
+                this.realstateType = res.slice(0,8);
+                this.realstateType.forEach(type =>{
+                    this.counttype ++;
+                });
+            },
+            err =>{
+                console.log(err);
+            }
+        )
+    }
+
+    Advertisement(){
+        this.adsServices.FindAll().then(
+            (res: ADs[]) => {
+              this.ADs = res.slice(0, 8);
+              this.ADs.forEach(ads =>{
+                if (ads.status == true) {
+                    this.countActivatedAds ++;
+                }else{
+                    this.countDeactivatedAds ++;
+                }
+              });
+            },
+            err => {
+              console.log(err);
+            }
+          )
     }
 }

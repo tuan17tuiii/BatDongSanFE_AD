@@ -25,6 +25,8 @@ import { ChangePasswordComponent } from './ChangePassword.component';
 import { Transactioncomponent } from './Transaction.component';
 import { BlogupnewsComponent } from './blogupnew.component';
 import { Statisticcomponent } from './Statistic.component';
+import { RealState } from './Entities/realstate.entities';
+import { RealStatecomponent } from './RealState.component';
 
 
 export const routes: Routes = [
@@ -192,6 +194,14 @@ export const routes: Routes = [
             {
                 path: 'statistic',
                 component: Statisticcomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'realstate',
+                component: RealStatecomponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

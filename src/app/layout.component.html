@@ -11,7 +11,7 @@
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="/assets/images/faces/face15.jpg" alt="">
+              <img class="img-xs rounded-circle " src="{{avatar}}" alt="">
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
@@ -123,6 +123,7 @@
             <li class="nav-item"> <a class="nav-link" [routerLink]="['UsersList']"> Users Account </a></li>
             <li class="nav-item"> <a class="nav-link" [routerLink]="['AdminsList']"> Admins Account </a></li>
             <li class="nav-item"> <a class="nav-link" [routerLink]="['ADs']"> Advertisement </a></li>
+            <li class="nav-item"> <a class="nav-link" [routerLink]="['realstate']"> RealState </a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
           </ul>
@@ -339,7 +340,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
               <div class="navbar-profile">
-                <img class="img-xs rounded-circle" src="/assets/images/faces/face15.jpg" alt="">
+                <img class="img-xs rounded-circle" src="{{avatar}}" alt="">
                 <p class="mb-0 d-none d-sm-block navbar-profile-name">{{username}}</p>
                 <i class="mdi mdi-menu-down d-none d-sm-block"></i>
               </div>

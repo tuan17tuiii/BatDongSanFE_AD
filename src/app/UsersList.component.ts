@@ -24,6 +24,7 @@ export class UsersListcomponent implements OnInit {
         this.userServices.FindAllUser().then(
             res => {
                 this.users = res as User[];
+                console.log(res);
             },
             err => {
                 console.log(err);
