@@ -80,14 +80,14 @@
       }
       @if(role == 1){
         <li class="nav-item menu-items">
-          <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          <a class="nav-link" data-toggle="collapse" href="#Table" aria-expanded="false" aria-controls="auth">
             <span class="menu-icon">
               <i class="mdi mdi-table-large"></i>
             </span>
             <span class="menu-title">Table</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="auth">
+          <div class="collapse" id="Table">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" [routerLink]="['/basic_table']"> Role </a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> BDS </a></li>
@@ -123,35 +123,35 @@
       
       @if(role == 1){
         <li class="nav-item menu-items">
-          <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          <a class="nav-link" data-toggle="collapse" href="#Management" aria-expanded="false" aria-controls="auth">
             <span class="menu-icon">
               <i class="mdi mdi mdi-account-multiple-outline"></i>
             </span>
             <span class="menu-title">Management</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="auth">
+          <div class="collapse" id="Management">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" [routerLink]="['UsersList']"> Users Account </a></li>
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['AgentsList']"> Agents Account </a></li>
               <li class="nav-item"> <a class="nav-link" [routerLink]="['AdminsList']"> Admins Account </a></li>
               <li class="nav-item"> <a class="nav-link" [routerLink]="['ADs']"> Advertisement </a></li>
               <li class="nav-item"> <a class="nav-link" [routerLink]="['realstate']"> RealState </a></li>
               <li class="nav-item"> <a class="nav-link" [routerLink]="['realstate_cat']"> RealState Category </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
             </ul>
           </div>
         </li>
       }
       
       <li class="nav-item menu-items">
-        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <a class="nav-link" data-toggle="collapse" href="#Add" aria-expanded="false" aria-controls="auth">
           <span class="menu-icon">
             <i class="mdi mdi mdi-account-multiple-plus"></i>
           </span>
           <span class="menu-title">Add Station</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="auth">
+        <div class="collapse" id="Add">
           <ul class="nav flex-column sub-menu">
             @if (role == 3) {
               <li class="nav-item"> <a class="nav-link" [routerLink]="['register']"> Add Account </a></li>
@@ -164,14 +164,14 @@
         </div>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <a class="nav-link" data-toggle="collapse" href="#Report" aria-expanded="false" aria-controls="auth">
           <span class="menu-icon">
             <i class="mdi mdi-file-document-box"></i>
           </span>
           <span class="menu-title">Report</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="auth">
+        <div class="collapse" id="Report">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" [routerLink]="['transaction']"> Transaction History </a></li>
             <li class="nav-item"> <a class="nav-link" [routerLink]="['statistic']"> View Statistics </a></li>
@@ -180,14 +180,14 @@
       </li>
       @if(role == 1){
         <li class="nav-item menu-items">
-          <a class="nav-link" [routerLink]="['/']">
+          <a class="nav-link" data-toggle="collapse" href="#News" aria-expanded="false" aria-controls="auth">
             <span class="menu-icon">
               <i class="mdi mdi-file-document-box"></i>
             </span>
             <span class="menu-title">News</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="auth">
+          <div class="collapse" id="News">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" [routerLink]="['blogupnews']"> All News </a></li>
               <li class="nav-item"> <a class="nav-link" [routerLink]="['blognews']"> UpNews </a></li>

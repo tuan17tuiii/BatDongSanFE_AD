@@ -26,6 +26,10 @@ export class UserServices{
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findAllUser'));
     }
 
+    async FindAllAgent(){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findAllAgent'));
+    }
+
     async Register(account: User){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/Register', account));
     }

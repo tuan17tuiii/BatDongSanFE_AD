@@ -30,6 +30,8 @@ import { RealStatecomponent } from './RealState.component';
 import { RealStateTypecomponent } from './realstate_type.component';
 import { AddCategoryComponent } from './AddCategory.component';
 import { Edit_catcomponent } from './Edit_cat.component';
+import { AgentsListcomponent } from './AgentList.component';
+import { EditAgentcomponent } from './EditAgent.component';
 
 
 export const routes: Routes = [
@@ -108,6 +110,14 @@ export const routes: Routes = [
                 },
             },
             {
+                path: 'AgentsList',
+                component: AgentsListcomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
                 path: 'AdminsList',
                 component: AdminsListcomponent,
                 canActivate: [AdminSecurity],
@@ -126,6 +136,14 @@ export const routes: Routes = [
             {
                 path: 'edit-user',
                 component: EditUsercomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'edit-agent',
+                component: EditAgentcomponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'
