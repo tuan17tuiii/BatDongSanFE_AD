@@ -19,8 +19,16 @@ export class RealstateTypeServices{
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'typerealstate/findAll'));
     }
 
+    async findById(id: number){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'typerealstate/findById/' + id));
+    }
+
     async Create(realstateType: RealstateType){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'typerealstate/Create', realstateType));
+    }
+
+    async Update(realstateType: RealstateType){
+        return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'typerealstate/Update', realstateType));
     }
 
     async Delete(id: number){

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Update Realstate Type</h2>
+                    @if(EditcatForm != null){
+                    <form class="forms-sample" [formGroup]="EditcatForm" (ngSubmit)="Update()">
+                        <div class="form-group row">
+                            <label for="Name" class="col-sm-3 col-form-label">Realstate Type</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control" id="type"
+                                    placeholder="Realstate Type" formControlName="type">
+
+                                @if (EditcatForm.get('type').touched) {
+                                @if (EditcatForm.hasError('required',['type'])) {
+                                <span class="error" style="color: red;">Realstate Type required !</span>
+                                }
+                                }
+                            </div>
+                        </div>
+                        <p-toast />
+                        <input type="hidden" formControlName="id">
+                        <button type="submit" class="btn btn-primary mr-2"
+                            [disabled]="EditcatForm.invalid">Save</button>
+                        <button class="btn btn-danger" [routerLink]="['/realstate_cat']">Cancel</button>
+                    </form>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

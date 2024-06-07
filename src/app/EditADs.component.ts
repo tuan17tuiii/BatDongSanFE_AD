@@ -21,7 +21,7 @@ export class EditADsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private adsServices: ADsServices, private activatedRoute: ActivatedRoute) { }
 
-  AddADsForm: FormGroup;
+  EditADsForm: FormGroup;
 
   msg: string;
   Ads: ADs;
@@ -34,10 +34,9 @@ export class EditADsComponent implements OnInit {
           if (res) {
             let ads: ADs = res as ADs;
             this.Ads = ads;
-            this.AddADsForm = this.formBuilder.group({
+            this.EditADsForm = this.formBuilder.group({
               id: ads.id,
               advertisementName: [ads.advertisementName, [Validators.required]],
-              describe: [ads.describe, [Validators.required]],
               price: [ads.price, [Validators.required]],
               time: [ads.time, [Validators.required]],
               status: ads.status
@@ -52,7 +51,7 @@ export class EditADsComponent implements OnInit {
   };
 
   Update() {
-    let ads: ADs = this.AddADsForm.value as ADs;
+    let ads: ADs = this.EditADsForm.value as ADs;
     if (this.Ads.time == ads.time) {
       this.adsServices.Update(ads).then(
         res => {

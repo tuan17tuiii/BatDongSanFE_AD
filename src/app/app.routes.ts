@@ -29,6 +29,7 @@ import { RealState } from './Entities/realstate.entities';
 import { RealStatecomponent } from './RealState.component';
 import { RealStateTypecomponent } from './realstate_type.component';
 import { AddCategoryComponent } from './AddCategory.component';
+import { Edit_catcomponent } from './Edit_cat.component';
 
 
 export const routes: Routes = [
@@ -220,6 +221,14 @@ export const routes: Routes = [
             {
                 path: 'Addcat',
                 component: AddCategoryComponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'edit-cat',
+                component: Edit_catcomponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

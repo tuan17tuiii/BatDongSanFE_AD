@@ -56,29 +56,45 @@ export class RealStateTypecomponent implements OnInit {
             acceptButtonStyleClass: 'p-button-sm btn btn-danger mr-2',
             accept: () => {
                 this.realStateService.FindByType(id).then(
-                    res =>{
-                        let realstate = res as RealState;
-                        this.realStateService.Delete(Number(realstate.id)).then(
-                            res =>{
-                                this.realstateTypeServices.Delete(id).then(
-                                    res => {
-                                        if (res == true) {
-                                            location.reload();
-                                        } else {
-                                            this.messageService.add({ severity: 'error', summary: 'Failed !', detail: 'Delete Failed !', life: 3000 });
+                    res => {
+                        if (res) {
+                            let realstate = res as RealState;
+                            this.realStateService.Delete(Number(realstate.id)).then(
+                                res => {
+                                    this.realstateTypeServices.Delete(id).then(
+                                        res => {
+                                            if (res == true) {
+                                                location.reload();
+                                            } else {
+                                                this.messageService.add({ severity: 'error', summary: 'Failed !', detail: 'Delete Failed !', life: 3000 });
+                                            }
+                                        },
+                                        error => {
+                                            console.log(error);
                                         }
-                                    },
-                                    error => {
-                                        console.log(error);
+                                    );
+                                },
+                                err => {
+                                    console.log(err);
+                                }
+                            );
+                        }else{
+                            this.realstateTypeServices.Delete(id).then(
+                                res => {
+                                    if (res == true) {
+                                        this.ngOnInit();
+                                    } else {
+                                        this.messageService.add({ severity: 'error', summary: 'Failed !', detail: 'Delete Failed !', life: 3000 });
                                     }
-                                );
-                            },
-                            err =>{
-                                console.log(err);
-                            }
-                        );
+                                },
+                                error => {
+                                    console.log(error);
+                                }
+                            );
+                        }
+
                     },
-                    err =>{
+                    err => {
                         console.log(err);
                     }
                 )

@@ -27,9 +27,9 @@ export class EditAdmincomponent implements OnInit {
                     this.InforForm = this.formBuilder.group({
                         id: user.id,
                         username: user.username,
-                        email: [user.email,[Validators.required]],
+                        email: [user.email,[Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
                         name: [user.name,[Validators.required]],
-                        phone: [user.phone,[Validators.required]],
+                        phone: [user.phone,[Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
                         roleId: user.roleId,
                         password: user.password,
                         status: user.status,

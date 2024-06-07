@@ -44,9 +44,9 @@ export class Informationcomponent implements OnInit {
                     this.InforForm = this.formBuilder.group({
                         id: user.id,
                         username: [user.username, [Validators.required]],
-                        email: [user.email, [Validators.required]],
+                        email: [user.email, [Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
                         name: [user.name, [Validators.required]],
-                        phone: [user.phone, [Validators.required]],
+                        phone: [user.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
                         avatar: user.avatar,
                         roleId: user.roleId,
                         password: user.password,
