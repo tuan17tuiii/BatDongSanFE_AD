@@ -3,26 +3,34 @@
         <div class="card-body">
             <h2 class="card-title" align="center">Advertisement List</h2>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead align="center">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Describe</th>
-                            <th>Date</th>
-                            <th>Status</th>
+                <p-table [value]="ADs" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem'}"
+                    [rowsPerPageOptions]="[5, 10, 20]" id="myTable" [style]="{'white-space': 'nowrap'}">
+                    <ng-template pTemplate="header">
+                        <tr align="center">
+                            <th pSortableColumn="id" style="width:20%">
+                                ID <p-sortIcon field="id"/>
+                            </th>
+                            <th pSortableColumn="advertisementName" style="width:20%">
+                                Name <p-sortIcon field="advertisementName"/>
+                            </th>
+                            <th pSortableColumn="price" style="width:20%">
+                                Price <p-sortIcon field="price"/>
+                            </th>
+                            <th pSortableColumn="time" style="width:20%">
+                                Date <p-sortIcon field="time"/>
+                            </th>
+                            <th pSortableColumn="status" style="width:20%">
+                                Status <p-sortIcon field="status"/>
+                            </th>
                             <th>Action</th>
                         </tr>
 
-                    </thead>
-                    <tbody align="center">
-                        @for (ads of ADs; track ads) {
+                    </ng-template>
+                    <ng-template pTemplate="body" let-ads>
                         <tr>
                             <td>{{ads.id}}</td>
                             <td>{{ads.advertisementName}}</td>
                             <td>{{ads.price}}</td>
-                            <td>{{ads.describe}}</td>
                             <td>{{ads.time}}</td>
                             <td>
                                 @if (ads.status == true) {
@@ -37,7 +45,8 @@
 
                                 <p-toast />
                                 <p-confirmPopup />
-                                <p-button (click)="delete(ads.id, $event)" label="Delete" [outlined]="true" styleClass="btn btn-danger mr-2"/>
+                                <p-button (click)="delete(ads.id, $event)" label="Delete" [outlined]="true"
+                                    styleClass="btn btn-danger mr-2" />
 
                                 @if (ads.status == true) {
                                 <button type="button" class="btn btn-warning mr-2"
@@ -48,9 +57,8 @@
                                 }
                             </td>
                         </tr>
-                        }
-                    </tbody>
-                </table>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </div>

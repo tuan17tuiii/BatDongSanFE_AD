@@ -1,0 +1,116 @@
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title" align="center">RealState List</h2>
+            <div class="container mb-3">
+                <div class="row">
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <p-table [value]="realstates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem'}"
+                    [rowsPerPageOptions]="[5, 10, 20]" id="myTable" [style]="{'white-space': 'nowrap'}">
+                    <ng-template pTemplate="header">
+                        <tr align="center">
+                            <th pSortableColumn="id" style="width:20%">
+                                ID <p-sortIcon field="id"/>
+                            </th>
+                            <th pSortableColumn="title" style="width:20%">
+                                Title <p-sortIcon field="title"/>
+                            </th>
+                            <th>Describe</th>
+                            <th pSortableColumn="price" style="width:20%">
+                                Price <p-sortIcon field="price"/>
+                            </th>
+                            <th pSortableColumn="type" style="width:20%">
+                                Type <p-sortIcon field="type"/>
+                            </th>
+                            <th pSortableColumn="acreage" style="width:20%">
+                                Acreage <p-sortIcon field="acreage"/>
+                            </th>
+                            <th pSortableColumn="bedrooms" style="width:20%">
+                                Bedrooms <p-sortIcon field="bedrooms"/>
+                            </th>
+                            <th pSortableColumn="bathrooms" style="width:20%">
+                                Bathrooms <p-sortIcon field="bathrooms"/>
+                            </th>
+                            <th pSortableColumn="status" style="width:20%">
+                                Status <p-sortIcon field="status"/>
+                            </th>
+                            <th pSortableColumn="createdAt" style="width:20%">
+                                Create At <p-sortIcon field="createdAt"/>
+                            </th>
+                            <th pSortableColumn="region" style="width:20%">
+                                Region <p-sortIcon field="region"/>
+                            </th>
+                            <th pSortableColumn="city" style="width:20%">
+                                City <p-sortIcon field="city"/>
+                            </th>
+                            <th pSortableColumn="street" style="width:20%">
+                                Street <p-sortIcon field="street"/>
+                            </th>
+                            <th pSortableColumn="usersell_Id" style="width:20%">
+                                Seller <p-sortIcon field="usersell_Id"/>
+                            </th>
+                            <th pSortableColumn="typeRealState" style="width:20%">
+                                Transaction_Type <p-sortIcon field="typeRealState"/>
+                            </th>
+                            <th pSortableColumn="sold" style="width:20%">
+                                Sold <p-sortIcon field="sold"/>
+                            </th>
+                            <th pSortableColumn="expired" style="width:20%">
+                                Expired <p-sortIcon field="expired"/>
+                            </th>
+                            <th pSortableColumn="created_end" style="width:20%">
+                                End Date <p-sortIcon field="created_end"/>
+                            </th>
+                        </tr>
+
+                    </ng-template>
+                    <ng-template pTemplate="body" let-realstate>
+                        <tr>
+                            <td>{{realstate.id}}</td>
+                            <td>{{realstate.title}}</td>
+                            <td>{{realstate.describe}}</td>
+                            <td>{{realstate.price}}</td>
+                            <td>{{realstate.type}}</td>
+                            <td>{{realstate.acreage}}</td>
+                            <td>{{realstate.bedrooms}}</td>
+                            <td>{{realstate.bathrooms}}</td>
+                            <td>
+                                @if (realstate.status == true) {
+                                <button type="button" class="btn btn-warning mr-2"
+                                    (click)="Deactive(realstate.id)">UnApproved</button>
+                                }@else {
+                                <button type="button" class="btn btn-success mr-2"
+                                    (click)="Active(realstate.id)">Approved</button>
+                                }
+                            </td>
+                            <td>{{realstate.createdAt}}</td>
+                            <td>{{realstate.region}}</td>
+                            <td>{{realstate.city}}</td>
+                            <td>{{realstate.street}}</td>
+                            <td>{{sellerNames[realstate.usersell_Id]}}</td>
+                            <td>{{realstate.typeRealState}}</td>
+                            <td>
+                                @if(realstate.sold == true){
+                                Sold
+                                }@else {
+                                Unsold
+                                }
+                            </td>
+                            <td>
+                                @if(realstate.expired == true){
+                                Expired
+                                }@else {
+                                Not Expired
+                                }
+                            </td>
+                            <td>{{realstate.created_end}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

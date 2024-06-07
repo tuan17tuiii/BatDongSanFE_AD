@@ -1,0 +1,39 @@
+<div class="container mt-10">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Realstate Type</h2>
+                        <form class="forms-sample" [formGroup]="AddCatForm" (ngSubmit)="Create()">
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label>Realstate Type's Name</label>
+                                    <div id="the-basics">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Realstate Type"
+                                            formControlName="type">
+
+                                        @if (AddCatForm.get('type').touched) {
+                                        @if (AddCatForm.hasError('required',['type'])) {
+                                        <span class="error" style="color: red;">Price required !</span>
+                                        }
+                                        }
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <p-toast position="top-left" key="tl" />
+                                        <button type="submit" class="btn btn-primary mr-2" pRipple
+                                            [disabled]="AddCatForm.invalid">Create</button>
+                                        <button class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

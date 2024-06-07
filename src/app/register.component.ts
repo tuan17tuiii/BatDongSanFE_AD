@@ -10,12 +10,14 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule, PasswordModule, DividerModule],
   templateUrl: 'register.component.html',
   host: { 'collision-id': 'RegisterComponent' },
   providers: [MessageService]
@@ -30,6 +32,9 @@ export class RegisterComponent implements OnInit {
   password: string;
   Roles: Role[];
   msg: string;
+  user_name: string;
+  avatar: string;
+  role: number;
 
   roleValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -41,11 +46,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/), Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
       roleId: ['all', [Validators.required, this.roleValidator()]],
     });
-
+      
     this.roleServices.FindAll().then(
       res => {
         this.Roles = res as Role[];
@@ -54,6 +59,20 @@ export class RegisterComponent implements OnInit {
         console.log(err);
       }
     )
+
+    if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
+      this.userServices.findByUsername(sessionStorage.getItem('username')).then(
+        res =>{
+          let user : User = res as User;
+          this.user_name = user.username;
+          this.avatar = user.avatar;
+          this.role = user.roleId;
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+    }
   }
 
   Register() {

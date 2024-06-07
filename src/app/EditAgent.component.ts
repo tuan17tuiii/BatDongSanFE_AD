@@ -11,9 +11,9 @@ import { error } from 'console';
     imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink,],
     templateUrl: 'EditUserAdmin.component.html',
     styleUrl: './app.component.css',
-    host: { 'collision-id': 'EditUsercomponent' },
+    host: { 'collision-id': 'EditAgentcomponent' },
 })
-export class EditUsercomponent implements OnInit {
+export class EditAgentcomponent implements OnInit {
     constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router, private activatedRoute: ActivatedRoute) { }
 
     InforForm: FormGroup;
@@ -53,7 +53,7 @@ export class EditUsercomponent implements OnInit {
         this.userServices.Update(user).then(
             res => {
 
-                this.router.navigate(['UsersList']);
+                this.router.navigate(['AgentsList']);
             },
             err => {
                 console.log(err);

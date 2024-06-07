@@ -6,7 +6,7 @@ import { EditorModule } from 'primeng/editor';
 import { FormArray, FormsModule } from '@angular/forms';
 import { NewsService } from './Services/News.Services';
 import { News } from './Entities/News.entities';
-import { ImageRealStateAPIService } from './Services/image.service';
+import { ImageRealStateAPIService } from './Services/image.services';
 import { BaseUrlService } from './Services/BaseUrlServices.services';
 @Component({
   selector: 'app-root',

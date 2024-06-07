@@ -6,45 +6,32 @@
                 <div class="card-body">
                     <h2 class="card-title">Update Advertisement</h2>
                     <p class="card-description" style="color: red;"> {{msg}} </p>
-                    @if(AddADsForm != null){
-                    <form class="forms-sample" [formGroup]="AddADsForm" (ngSubmit)="Update()">
+                    @if(EditADsForm != null){
+                    <form class="forms-sample" [formGroup]="EditADsForm" (ngSubmit)="Update()">
                         <div class="form-group row">
                             <label for="Name" class="col-sm-3 col-form-label">Advertisement's Name</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control form-control" id="Name"
                                     placeholder="Advertisement's Name" formControlName="advertisementName">
+                                @if (EditADsForm.get('advertisementName').touched) {
+                                @if (EditADsForm.hasError('required',['advertisementName'])) {
+                                <span class="error" style="color: red;">Advertisement's Name required !</span>
+                                }
+                                }
                             </div>
-                            @if (AddADsForm.get('advertisementName').touched) {
-                            @if (AddADsForm.hasError('required',['advertisementName'])) {
-                            <span class="error" style="color: red;">Advertisement's Name required !</span>
-                            }
-                            }
-                        </div>
-                        <div class="form-group row">
-                            <label for="Describe" class="col-sm-3 col-form-label">Describe</label>
-                            <div class="col-sm-9">
-                                <textarea id="Describe" class="form-control" placeholder="Describe"
-                                    formControlName="describe" rows="8">
-
-                                    </textarea>
-                            </div>
-                            @if (AddADsForm.get('describe').touched) {
-                            @if (AddADsForm.hasError('required',['describe'])) {
-                            <span class="error" style="color: red;">Describe required !</span>
-                            }
-                            }
                         </div>
                         <div class="form-group row">
                             <label for="Price" class="col-sm-3 col-form-label">Price</label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" id="Price" placeholder="Price"
-                                    formControlName="price" >
+                                    formControlName="price">
+                                @if (EditADsForm.get('price').touched) {
+                                @if (EditADsForm.hasError('required',['price'])) {
+                                <span class="error" style="color: red;">Price required !</span>
+                                }
+                                }
                             </div>
-                            @if (AddADsForm.get('price').touched) {
-                            @if (AddADsForm.hasError('required',['price'])) {
-                            <span class="error" style="color: red;">Price required !</span>
-                            }
-                            }
+
                         </div>
                         <div class="form-group row">
                             <label for="Date" class="col-sm-3 col-form-label">Date</label>
@@ -52,17 +39,19 @@
                                 <p-calendar inputStyleClass="form-control" [style]="{'width':'100%'}"
                                     class="treetableDate" id="Date" placeholder="Date" formControlName="time"
                                     dateFormat="dd/mm/yy" [showIcon]="true" [iconDisplay]="'input'" />
+                                @if (EditADsForm.get('time').touched) {
+                                @if (EditADsForm.hasError('required',['time'])) {
+                                <span class="error" style="color: red;">Date required !</span>
+                                }
+                                }
                             </div>
-                            @if (AddADsForm.get('time').touched) {
-                            @if (AddADsForm.hasError('required',['time'])) {
-                            <span class="error" style="color: red;">Date required !</span>
-                            }
-                            }
+
                         </div>
                         <input type="hidden" formControlName="status">
                         <input type="hidden" formControlName="id">
-                        <button type="submit" class="btn btn-primary mr-2" [disabled]="AddADsForm.invalid">Save</button>
-                        <button class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
+                        <button type="submit" class="btn btn-primary mr-2"
+                            [disabled]="EditADsForm.invalid">Save</button>
+                        <button class="btn btn-danger" [routerLink]="['/ADs']">Cancel</button>
                     </form>
                     }
                 </div>

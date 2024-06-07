@@ -7,11 +7,12 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule, PasswordModule],
   templateUrl: './login.component.html',
   providers: [MessageService]
 })
@@ -48,7 +49,7 @@ export class Logincomponet implements OnInit {
       res => {
         console.log(res);
         if (res['result']) {
-          if (user.roleId == 1) {
+          if (user.roleId == 1 || user.roleId == 3) {
             if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
               sessionStorage.setItem('username', this.username);
               sessionStorage.setItem('role', String(user.roleId));

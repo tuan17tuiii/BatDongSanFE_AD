@@ -15,21 +15,21 @@ import { RippleModule } from 'primeng/ripple';
     selector: 'app-root',
     standalone: true,
     imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, ConfirmPopupModule, ToastModule, ButtonModule, RippleModule],
-    templateUrl: 'UsersList.component.html',
+    templateUrl: 'AgentList.component.html',
     styleUrl: './app.component.css',
-    host: { 'collision-id': 'UsersListcomponent' },
+    host: { 'collision-id': 'AgentsListcomponent' },
     providers: [ConfirmationService, MessageService]
 })
-export class UsersListcomponent implements OnInit {
+export class AgentsListcomponent implements OnInit {
     constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
-    users: User[];
+    agents: User[];
     msg: string;
 
     ngOnInit() {
-        this.userServices.FindAllUser().then(
+        this.userServices.FindAllAgent().then(
             res => {
-                this.users = res as User[];
+                this.agents = res as User[];
             },
             err => {
                 console.log(err);

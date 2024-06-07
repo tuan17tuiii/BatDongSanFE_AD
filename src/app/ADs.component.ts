@@ -9,11 +9,12 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ButtonModule, ToastModule, ConfirmPopupModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ButtonModule, ToastModule, ConfirmPopupModule, TableModule],
   templateUrl: './ADs.component.html',
   providers: [ConfirmationService, MessageService]
 })

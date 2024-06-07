@@ -9,4 +9,5 @@ export class User{
     advertisement_id: number;
     status: boolean;
     securityCode: string;
+    avatar: string;
 }

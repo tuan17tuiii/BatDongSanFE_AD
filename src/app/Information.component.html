@@ -1,3 +1,12 @@
+<style>
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+</style>
+
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="row w-100 m-0">
@@ -7,6 +16,29 @@
                         <h3 class="card-title text-left mb-3">Account Information</h3>
                         @if (InforForm != null) {
                         <form [formGroup]="InforForm">
+                            <div class="container mb-3" align="left">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="{{avatar}}">
+                                    </div>
+
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <input type="file" (change)="SelectFile($event)" id="fileInput"
+                                                    style="display: none;">
+                                                <label for="fileInput" class="custom-file-upload btn btn-info" style="border: 0; height: 33px; width: 100px; padding-top: 11px;">
+                                                    <b>Avatar</b>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p-button styleClass="btn btn-info" [style]="{'height':'33px'}"
+                                                    (click)="Upload()" label="Upload" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label>Username</label>
                                 <input type="text" class="form-control p_input" formControlName="username" readonly
@@ -46,15 +78,18 @@
                                 <input type="hidden" formControlName="password">
                                 <input type="hidden" formControlName="status">
                                 <input type="hidden" formControlName="securityCode">
+                                <input type="hidden" formControlName="avatar">
                                 <p-toast position="top-right" key="tl" />
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <p-button pRipple type="ngSubmit" label="Save"
-                                            styleClass="btn btn-success" [disabled]="InforForm.invalid" [style]="{'width':'100%'}" (click)="Save()"/>
+                                        <p-button pRipple type="ngSubmit" label="Save" styleClass="btn btn-success"
+                                            [disabled]="InforForm.invalid" [style]="{'width':'100%'}"
+                                            (click)="Save()" />
                                     </div>
                                     <div class="col-md-8">
                                         <p-button pRipple type="p-button" label="Change Password"
-                                            styleClass="btn btn-primary" [style]="{'width':'100%'}" [routerLink]="['changepass']"/>
+                                            styleClass="btn btn-primary" [style]="{'width':'100%'}"
+                                            [routerLink]="['/changepass']" />
                                     </div>
                                 </div>
                             </div>
