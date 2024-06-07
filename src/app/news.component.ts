@@ -51,7 +51,7 @@ if(x){
       console.log(newsv)
       console.log(res)
       let news_idd=res['news_id'] as number;
-      news_idd= (news_idd*-1);
+      news_idd= news_idd;
       let  news_id= news_idd.toString();
       let formData = new FormData();//tao form data
       for (let i = 0; i < this.files.length; i++) {
@@ -59,6 +59,7 @@ if(x){
         console.log(formData)
 
         formData.append('id', news_id)
+        formData.append('dataname','news')
      
       }
     this.imgservices.uploads(formData).then(
