@@ -32,6 +32,7 @@ import { AddCategoryComponent } from './AddCategory.component';
 import { Edit_catcomponent } from './Edit_cat.component';
 import { AgentsListcomponent } from './AgentList.component';
 import { EditAgentcomponent } from './EditAgent.component';
+import { AgentRequestcomponent } from './AgentRequest.component';
 
 
 export const routes: Routes = [
@@ -247,6 +248,14 @@ export const routes: Routes = [
             {
                 path: 'edit-cat',
                 component: Edit_catcomponent,
+                canActivate: [AdminSecurity],
+                data: {
+                    role: '1'
+                },
+            },
+            {
+                path: 'agent-request',
+                component: AgentRequestcomponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

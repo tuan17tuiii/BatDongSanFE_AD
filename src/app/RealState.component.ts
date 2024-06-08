@@ -14,11 +14,12 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { RealState } from './Entities/realstate.entities';
 import { RealStateService } from './Services/realstate.services';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, CalendarModule, ToastModule, ButtonModule, RippleModule],
+    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, CalendarModule, ToastModule, ButtonModule, RippleModule, TooltipModule],
     templateUrl: 'RealState.component.html',
     styleUrl: './app.component.css',
     host: { 'collision-id': 'RealStatecomponent' },
@@ -40,7 +41,6 @@ export class RealStatecomponent implements OnInit {
                 this.realStateService.findAll2().then(
                     res => {
                         this.realstates = res as RealState[];
-                        console.log(res);
                     },
                     err => {
                         console.log(err);

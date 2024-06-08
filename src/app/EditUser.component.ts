@@ -35,7 +35,8 @@ export class EditUsercomponent implements OnInit {
                         status: user.status,
                         securityCode: user.securityCode,
                         advertisementId: user.advertisement_id,
-                        avatar: user.avatar
+                        avatar: user.avatar,
+                        StatusUpdate: user.statusUpdate
                     });
                 },
                 err => {

@@ -1,3 +1,5 @@
+import { Image } from "./image.entities";
+
 export class User{
     id: number;
     username: string;
@@ -10,4 +12,6 @@ export class User{
     status: boolean;
     securityCode: string;
     avatar: string;
+    statusUpdate: boolean;
+    image: Image[];
 }

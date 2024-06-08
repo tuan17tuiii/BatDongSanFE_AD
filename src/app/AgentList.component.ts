@@ -46,8 +46,8 @@ export class AgentsListcomponent implements OnInit {
             rejectIcon: 'pi pi-times mr-1',
             acceptLabel: 'Confirm',
             rejectLabel: 'Cancel',
-            rejectButtonStyleClass: 'p-button-outlined p-button-sm btn btn-info mr-2',
-            acceptButtonStyleClass: 'p-button-sm btn btn-danger mr-2',
+            rejectButtonStyleClass: 'p-button-outlined p-button-sm btn btn-danger mr-2',
+            acceptButtonStyleClass: 'p-button-sm btn btn-success mr-2',
             accept: () => {
                 this.userServices.Delete(id).then(
                     res => {

@@ -52,6 +52,7 @@ export class Informationcomponent implements OnInit {
                         password: user.password,
                         status: user.status,
                         securityCode: user.securityCode,
+                        StatusUpdate: user.statusUpdate
                     });
                 },
                 err => {

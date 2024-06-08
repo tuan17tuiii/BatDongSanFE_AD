@@ -56,7 +56,6 @@ export class EditADsComponent implements OnInit {
       this.adsServices.Update(ads).then(
         res => {
           if (res['result'] == true) {
-            this.msg = "Update Advertisement Successd !";
             this.router.navigate(['ADs']);
           } else {
             this.msg = "Update Advertisement Failed !";

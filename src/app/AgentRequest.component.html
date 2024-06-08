@@ -1,0 +1,105 @@
+<style>
+    .form-control[readonly] {
+        background-color: #2A3038;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 5px;
+        /* Adjust padding as needed */
+    }
+
+    .resized-image {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Confirm Agent Request</h2>
+                    <div class="form-group row">
+                        <label for="Username" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Username" value="{{user.username}}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Fullname" class="col-sm-3 col-form-label">Fullname</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Fullname" value="{{user.name}}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Email" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="Email" value="{{user.email}}" readonly>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="Phone Number" class="col-sm-3 col-form-label">Phone Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Phone Number" value="{{user.phone}}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="front" class="col-sm-3 col-form-label">The front of identification card</label>
+                        <div class="col-sm-9">
+                            <img src="{{front}}" id="front" style="width: 506px; height: 282px;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="back" class="col-sm-3 col-form-label">The back of identification card</label>
+                        <div class="col-sm-9">
+                            <img src="{{back}}" id="back" style="width: 506px; height: 282px;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Image" class="col-sm-3 col-form-label">User Image</label>
+                        <div class="col-sm-9">
+                            <img src="{{userimg}}" id="Image" style="width: 506px; height: 282px;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Image" class="col-sm-3 col-form-label">Other types of documents image</label>
+                        <div class="col-sm-9 table-wrapper">
+                            <table style="width: 506px; flex-wrap: wrap;">
+                                <tr>
+                                    @for (another of anotherimg; track another) {
+                                    <td>
+                                        <img src="{{userimg}}" id="Image" class="resized-image">
+                                    </td>
+                                    }
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div align="right">
+                        <p-toast />
+                        <p-button (click)="CancelRequest(user.id)" label="Reject Request" [outlined]="true"
+                            styleClass="btn btn-danger mr-2" />
+                        <p-button (click)="ConfirmRequest(user.id)" label="Confirm Request" [outlined]="true"
+                            styleClass="btn btn-success mr-2" />    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

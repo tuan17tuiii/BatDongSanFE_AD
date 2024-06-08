@@ -52,14 +52,15 @@ export class RealStateTypecomponent implements OnInit {
             rejectIcon: 'pi pi-times mr-1',
             acceptLabel: 'Confirm',
             rejectLabel: 'Cancel',
-            rejectButtonStyleClass: 'p-button-outlined p-button-sm btn btn-info mr-2',
-            acceptButtonStyleClass: 'p-button-sm btn btn-danger mr-2',
+            rejectButtonStyleClass: 'p-button-outlined p-button-sm btn btn-danger mr-2',
+            acceptButtonStyleClass: 'p-button-sm btn btn-success mr-2',
             accept: () => {
                 this.realStateService.FindByType(id).then(
                     res => {
                         if (res) {
                             let realstate = res as RealState;
-                            this.realStateService.Delete(Number(realstate.id)).then(
+                            realstate.type = null;
+                            this.realStateService.Update(realstate).then(
                                 res => {
                                     this.realstateTypeServices.Delete(id).then(
                                         res => {
