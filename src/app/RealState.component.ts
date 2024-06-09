@@ -61,18 +61,39 @@ export class RealStatecomponent implements OnInit {
         this.realStateService.findById(id).then(
             res => {
                 if (res) {
+
                     let realstate = res as RealState;
-                    realstate.status = true;
-                    this.realStateService.Update(realstate).then(
+                    this.userService.findById(realstate.usersellId).then(
                         res => {
-                            if (res == true) {
-                                this.ngOnInit();
-                            };
-                        },
-                        err => {
-                            console.log(err);
+                            let user = res as User
+
+
+                            let createdAt = new Date()
+                            let createdEnd = new Date()
+                            realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
+                            if (user.advertisement == null) {
+                                createdEnd.setDate(createdAt.getDate() + 1)
+                                realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
+                            } else {
+                                createdEnd.setDate(createdAt.getDate() + user.advertisement.quantityDates)
+                                realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US');
+                            }
+
+                            realstate.status = true;
+                            this.realStateService.Update(realstate).then(
+                                res => {
+                                    if (res == true) {
+                                        this.ngOnInit();
+                                    };
+                                },
+                                err => {
+                                    console.log(err);
+                                }
+                            );
                         }
-                    );
+                    )
+
+
                 };
             },
             err => {

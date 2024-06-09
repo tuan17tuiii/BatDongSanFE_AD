@@ -1,3 +1,4 @@
+import { Advertisement } from "./advertisement.entities";
 import { Image } from "./image.entities";
 
 export class User{
@@ -9,6 +10,7 @@ export class User{
     phone: string;
     roleId: number;
     advertisement_id: number;
+    advertisement : Advertisement
     status: boolean;
     securityCode: string;
     avatar: string;
