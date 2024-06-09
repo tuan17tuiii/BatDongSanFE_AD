@@ -5,6 +5,20 @@
         padding: 6px 12px;
         cursor: pointer;
     }
+
+    .image{
+        border: 1px solid black;
+    }
+
+    .image:hover{
+        transition: all .7s ease-in-out;
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+
+    .form-control[readonly] {
+        background-color: #2A3038;
+    }
 </style>
 
 <div class="container-scroller">
@@ -14,35 +28,25 @@
                 <div class="card col-lg-4 mx-auto">
                     <div class="card-body px-5 py-5">
                         <h3 class="card-title text-left mb-3">Account Information</h3>
+                        <div class="ip container">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-2">
+                                    <input type="file" (change)="SelectFile($event)" id="fileInput" style="display: none;">
+                                    <label for="fileInput">
+                                        <a style="cursor: pointer;">
+                                            <img style="width: 60px; height: 60px;" class="image" src="{{avatar}}">
+                                        </a>
+                                    </label>
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+                        </div>
                         @if (InforForm != null) {
                         <form [formGroup]="InforForm">
-                            <div class="container mb-3" align="left">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img src="{{avatar}}">
-                                    </div>
-
-                                    <div class="col-md-9">
-                                        <div class="row">
-                                            <div class="col-md-7">
-                                                <input type="file" (change)="SelectFile($event)" id="fileInput"
-                                                    style="display: none;">
-                                                <label for="fileInput" class="custom-file-upload btn btn-info" style="border: 0; height: 33px; width: 100px; padding-top: 11px;">
-                                                    <b>Avatar</b>
-                                                </label>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p-button styleClass="btn btn-info" [style]="{'height':'33px'}"
-                                                    (click)="Upload()" label="Upload" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" class="form-control p_input" formControlName="username" readonly
-                                    style="color: black;">
+                                <input type="text" class="form-control p_input" formControlName="username" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>

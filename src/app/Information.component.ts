@@ -27,7 +27,6 @@ export class Informationcomponent implements OnInit {
     id: number;
     name: string;
     avatar: string;
-    file: File;
     url: string;
 
     ngOnInit() {
@@ -63,12 +62,13 @@ export class Informationcomponent implements OnInit {
     }
 
     SelectFile(Event: any) {
-        this.file = Event.target.files[0];
+        const file: File = Event.target.files[0];
+        this.Upload(file);
     }
 
-    Upload() {
+    Upload(file: File) {
         let formData = new FormData();
-        formData.append('file', this.file);
+        formData.append('file', file);
         formData.append('id', String(this.id));
         this.userServices.Upload(formData).then(
             res => {

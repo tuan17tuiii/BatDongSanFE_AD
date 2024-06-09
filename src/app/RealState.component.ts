@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { TableModule } from 'primeng/table';
-import { Transaction } from './Entities/Transaction.entities';
-import { TransactionServices } from './Services/Transaction.services';
 import { User } from './Entities/User.entities';
 import { CalendarModule } from 'primeng/calendar';
 import { formatDate } from '@angular/common';
@@ -15,11 +13,13 @@ import { RippleModule } from 'primeng/ripple';
 import { RealState } from './Entities/realstate.entities';
 import { RealStateService } from './Services/realstate.services';
 import { TooltipModule } from 'primeng/tooltip';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, CalendarModule, ToastModule, ButtonModule, RippleModule, TooltipModule],
+    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, CalendarModule, ToastModule, ButtonModule, RippleModule, TooltipModule, FloatLabelModule, InputTextModule],
     templateUrl: 'RealState.component.html',
     styleUrl: './app.component.css',
     host: { 'collision-id': 'RealStatecomponent' },
@@ -30,6 +30,7 @@ export class RealStatecomponent implements OnInit {
 
     realstates: RealState[];
     sellerNames: { [key: number]: string } = {};
+    Searchtitle: string;
 
     ngOnInit() {
         this.userService.FindAll().then(
@@ -80,6 +81,8 @@ export class RealStatecomponent implements OnInit {
                             }
 
                             realstate.status = true;
+                            realstate.sold = false;
+                            realstate.expired = false;
                             this.realStateService.Update(realstate).then(
                                 res => {
                                     if (res == true) {
@@ -124,5 +127,17 @@ export class RealStatecomponent implements OnInit {
                 console.log(err);
             }
         );
+    }
+
+    SearchTitle(){
+        this.realStateService.searchByTitle(this.Searchtitle).then(
+            res =>{
+                this.realstates = res as RealState[];
+            },
+            err =>{
+                console.log(err);
+                this.ngOnInit();
+            }
+        )
     }
 }

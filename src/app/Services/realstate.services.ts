@@ -47,4 +47,8 @@ export class RealStateService  {
     async FindByType(id: number){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'realstate/findByType/' + id));
     }
+    async searchByTitle(title: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'realstate/searchByTitle/' + title));
+    }
+    
 }

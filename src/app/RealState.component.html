@@ -8,6 +8,19 @@
         display: inline-block;
         vertical-align: middle;
     }
+
+    .p-inputtext {
+        font-family: var(--font-family);
+        font-feature-settings: var(--font-feature-settings, normal);
+        font-size: 1rem;
+        color: #fff;
+        background: #2A3038;
+        padding: 0.75rem 0.75rem;
+        border: 1px solid #d1d5db;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        appearance: none;
+        border-radius: 6px;
+    }
 </style>
 
 <div class="col-lg-12 grid-margin stretch-card">
@@ -16,7 +29,16 @@
             <h2 class="card-title" align="center">RealState List</h2>
             <div class="container mb-3">
                 <div class="row">
-
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <p-floatLabel>
+                            <input pInputText id="username" [style]="{'width': '100%'}" (keyup)="SearchTitle()"
+                                [(ngModel)]="Searchtitle" />
+                            <label for="username">Title ....</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <p-toast position="top-left" key="tl" />
                 </div>
             </div>
             <div class="table-responsive">
@@ -101,7 +123,7 @@
                                 }
                             </td>
                             <td>{{realstate.createdAt}}</td>
-                            <td >{{realstate.region}}</td>
+                            <td>{{realstate.region}}</td>
                             <td>{{realstate.city}}</td>
                             <td>{{realstate.street}}</td>
                             <td>{{sellerNames[realstate.usersellId]}}</td>
