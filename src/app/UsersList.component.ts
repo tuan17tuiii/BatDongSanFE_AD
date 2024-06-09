@@ -3,18 +3,19 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './Services/User.Services';
 import { User } from './Entities/User.entities';
-import { error } from 'console';
 import { TableModule } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, ConfirmPopupModule, ToastModule, ButtonModule, RippleModule],
+    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, ConfirmPopupModule, ToastModule, ButtonModule, RippleModule, InputTextModule, FloatLabelModule],
     templateUrl: 'UsersList.component.html',
     styleUrl: './app.component.css',
     host: { 'collision-id': 'UsersListcomponent' },
@@ -25,6 +26,8 @@ export class UsersListcomponent implements OnInit {
 
     users: User[];
     msg: string;
+    Searchname: string;
+    Searchemail: string;
 
     ngOnInit() {
         this.userServices.FindAllUser().then(
@@ -118,5 +121,35 @@ export class UsersListcomponent implements OnInit {
                 console.log(err);
             }
         );
+    }
+
+    SearchUsername() {
+        this.userServices.searchByUsername(this.Searchname, 2).then(
+            res => {
+                if (res) {
+                    this.users = res as User[];
+                } else {
+                    this.ngOnInit();
+                }
+
+            },
+            err => {
+                console.log(err);
+                this.ngOnInit();
+            }
+        )
+
+    }
+
+    SearchEmail() {
+        this.userServices.searchByEmail(this.Searchemail, 2).then(
+            res => {
+                this.users = res as User[];
+            },
+            err => {
+                console.log(err);
+                this.ngOnInit();
+            }
+        )
     }
 }

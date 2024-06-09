@@ -22,6 +22,10 @@ export class ADsServices{
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'advertisement/findByID/' + id));
     }
 
+    async searchByName(name: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'advertisement/searchByName/' + name));
+    }
+
     async Delete(id: number){
         return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'advertisement/delete/' + id));
     }

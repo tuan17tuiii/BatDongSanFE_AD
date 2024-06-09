@@ -46,6 +46,14 @@ export class UserServices{
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findByUsername/' + username));
     }
 
+    async searchByEmail(email: string, role: number){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/searchByEmail/' + email + '/' + role));
+    }
+
+    async searchByUsername(username: string, role: number){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/searchByUsername/' + username + '/' + role));
+    }
+
     async findById(id: string){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findById/' + id));
     }

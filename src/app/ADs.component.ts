@@ -10,11 +10,13 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ButtonModule, ToastModule, ConfirmPopupModule, TableModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ButtonModule, ToastModule, ConfirmPopupModule, TableModule, FloatLabelModule, InputTextModule],
   templateUrl: './ADs.component.html',
   providers: [ConfirmationService, MessageService]
 })
@@ -26,6 +28,7 @@ export class ADscomponet implements OnInit {
 
   ADs: ADs[];
   msg: string;
+  Searchname: string;
 
   ngOnInit() {
     this.adsServices.FindAll().then(
@@ -116,5 +119,17 @@ export class ADscomponet implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  SearchName() {
+      this.adsServices.searchByName(this.Searchname).then(
+        res =>{
+          this.ADs = res as  ADs[];
+        },
+        err =>{
+          console.log(err);
+          this.ngOnInit();
+        }
+      )
   }
 }

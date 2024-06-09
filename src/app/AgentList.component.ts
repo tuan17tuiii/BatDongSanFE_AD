@@ -10,11 +10,13 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, ConfirmPopupModule, ToastModule, ButtonModule, RippleModule],
+    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, ConfirmPopupModule, ToastModule, ButtonModule, RippleModule, InputTextModule, FloatLabelModule],
     templateUrl: 'AgentList.component.html',
     styleUrl: './app.component.css',
     host: { 'collision-id': 'AgentsListcomponent' },
@@ -25,6 +27,8 @@ export class AgentsListcomponent implements OnInit {
 
     agents: User[];
     msg: string;
+    Searchname: string;
+    Searchemail: string;
 
     ngOnInit() {
         this.userServices.FindAllAgent().then(
@@ -118,5 +122,34 @@ export class AgentsListcomponent implements OnInit {
                 console.log(err);
             }
         );
+    }
+
+    SearchUsername() {
+        this.userServices.searchByUsername(this.Searchname, 4).then(
+            res => {
+                if(res){
+                    this.agents = res as User[];
+                }else{
+                    this.ngOnInit();
+                }
+                
+            },
+            err => {
+                console.log(err);
+                this.ngOnInit();
+            }
+        )
+
+    }
+
+    SearchEmail() {
+        this.userServices.searchByEmail(this.Searchemail, 4).then(
+            res => {
+                this.agents = res as User[];
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 }
