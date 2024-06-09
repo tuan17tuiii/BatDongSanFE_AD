@@ -29,6 +29,7 @@ export class AdminsListcomponent implements OnInit {
     msg: string;
     Searchname: string;
     Searchemail: string;
+    role: number;
 
     ngOnInit() {
         this.userServices.FindAllAdmin().then(
@@ -39,6 +40,18 @@ export class AdminsListcomponent implements OnInit {
                 console.log(err);
             }
         )
+
+        if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
+            this.userServices.findByUsername(sessionStorage.getItem('username')).then(
+                res => {
+                    let user: User = res as User;
+                    this.role = user.roleId;
+                },
+                err => {
+                    console.log(err);
+                }
+            )
+        }
     }
 
     delete(id: number, event: Event) {

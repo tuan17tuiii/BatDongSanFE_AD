@@ -24,7 +24,6 @@ import { EditADsComponent } from './EditADs.component';
 import { ChangePasswordComponent } from './ChangePassword.component';
 import { Transactioncomponent } from './Transaction.component';
 import { BlogupnewsComponent } from './blogupnew.component';
-import { Statisticcomponent } from './Statistic.component';
 import { RealState } from './Entities/realstate.entities';
 import { RealStatecomponent } from './RealState.component';
 import { RealStateTypecomponent } from './realstate_type.component';
@@ -208,14 +207,6 @@ export const routes: Routes = [
             },     {
                 path: 'blogupnews',
                 component: BlogupnewsComponent,
-                canActivate: [AdminSecurity],
-                data: {
-                    role: '1'
-                },
-            },
-            {
-                path: 'statistic',
-                component: Statisticcomponent,
                 canActivate: [AdminSecurity],
                 data: {
                     role: '1'

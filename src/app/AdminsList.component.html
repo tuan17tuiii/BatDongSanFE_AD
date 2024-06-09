@@ -78,11 +78,13 @@
                             <td>
                                 <button type="button" class="btn btn-primary mr-2"
                                     [routerLink]="['/edit-admin', {id: admin.id}]">Edit</button>
-
-                                <p-toast />
-                                <p-confirmPopup />
-                                <p-button (click)="delete(admin.id, $event)" label="Delete" [outlined]="true"
-                                    styleClass="btn btn-danger mr-2" />
+                                    
+                                @if (role == 3) {
+                                    <p-toast />
+                                    <p-confirmPopup />
+                                    <p-button (click)="delete(admin.id, $event)" label="Delete" [outlined]="true"
+                                        styleClass="btn btn-danger mr-2" />
+                                }
 
                                 @if (admin.status == true) {
                                 <button type="button" class="btn btn-warning mr-2"
