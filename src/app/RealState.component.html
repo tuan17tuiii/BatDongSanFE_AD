@@ -38,7 +38,6 @@
                         </p-floatLabel>
                     </div>
                     <div class="col-md-3"></div>
-                    <p-toast position="top-left" key="tl" />
                 </div>
             </div>
             <div class="table-responsive">
@@ -114,13 +113,55 @@
                             <td>{{realstate.bedrooms}}</td>
                             <td>{{realstate.bathrooms}}</td>
                             <td>
-                                @if (realstate.status == true) {
-                                <button type="button" class="btn btn-warning mr-2"
-                                    (click)="Deactive(realstate.id)">UnApproved</button>
-                                }@else {
+                                @if(realstate.status == false){
                                 <button type="button" class="btn btn-success mr-2"
                                     (click)="Active(realstate.id)">Approved</button>
+
+                                <p-button (click)="Show()" label="Reject" styleClass="btn btn-danger mr-2" />
+                                <p-dialog header="Header" [(visible)]="visible" [modal]="true"
+                                    [style]="{ width: '25rem' }">
+                                    <ng-template pTemplate="header">
+                                        <div class="inline-flex align-items-center justify-content-center gap-2">
+                                            <span class="font-bold white-space-nowrap">
+                                                <b>Reject Reason</b>
+                                            </span>
+                                        </div>
+                                    </ng-template>
+                                    <div class="flex align-items-center gap-3 mb-3 row">
+                                        <div class="col-md-4">
+                                            <label for="username" class="font-semibold w-6rem">
+                                                Tilte
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input pInputText id="username" class="flex-auto" autocomplete="off"
+                                                [style]="{'background-color':'white', 'color':'black'}"
+                                                [(ngModel)]="title" />
+                                        </div>
+                                    </div>
+                                    <div class="flex align-items-center gap-3 mb-5 row">
+                                        <div class="col-md-4">
+                                            <label for="email" class="font-semibold w-6rem">Content</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input pInputText id="email" class="flex-auto" autocomplete="off"
+                                                [style]="{'background-color':'white', 'color':'black'}"
+                                                [(ngModel)]="content" />
+                                        </div>
+                                    </div>
+                                    <ng-template pTemplate="footer">
+                                        <p-button label="Cancel" [text]="true" styleClass="btn btn-danger"
+                                            (click)="visible = false" />
+                                        &nbsp;
+                                        <p-button label="Send" [outlined]="true" styleClass="btn btn-primary"
+                                            (click)="Deactive(realstate.id)" />
+                                    </ng-template>
+                                </p-dialog>
+                                <p-toast position="top-left" key="tl" />
+                                }@else {
+                                <div class="badge badge-outline-success">Approved</div>
                                 }
+
                             </td>
                             <td>{{realstate.createdAt}}</td>
                             <td>{{realstate.region}}</td>

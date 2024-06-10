@@ -85,4 +85,8 @@ export class UserServices{
     async ForgetPassword(email: string){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/ForgetPassword/' + email));
     }
+
+    async SendMail(mail: string, title: string ,email: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/sendmail/' + mail + '/' + title + '/' + email));
+    }
 }

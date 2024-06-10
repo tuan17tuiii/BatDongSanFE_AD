@@ -15,11 +15,12 @@ import { RealStateService } from './Services/realstate.services';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, CalendarModule, ToastModule, ButtonModule, RippleModule, TooltipModule, FloatLabelModule, InputTextModule],
+    imports: [FormsModule, ReactiveFormsModule, RouterOutlet, RouterLink, TableModule, CalendarModule, ToastModule, ButtonModule, RippleModule, TooltipModule, FloatLabelModule, InputTextModule, DialogModule],
     templateUrl: 'RealState.component.html',
     styleUrl: './app.component.css',
     host: { 'collision-id': 'RealStatecomponent' },
@@ -31,6 +32,9 @@ export class RealStatecomponent implements OnInit {
     realstates: RealState[];
     sellerNames: { [key: number]: string } = {};
     Searchtitle: string;
+    visible: boolean = false;
+    title: string = "Realstate Rejected";
+    content: string = "Your Realestate has been Rejected";
 
     ngOnInit() {
         this.userService.FindAll().then(
@@ -52,10 +56,6 @@ export class RealStatecomponent implements OnInit {
                 console.log(err);
             }
         )
-    }
-
-    Search() {
-
     }
 
     Active(id: number) {
@@ -105,22 +105,44 @@ export class RealStatecomponent implements OnInit {
         );
     }
 
+    Show(){
+        this.visible = true;
+    }
+
     Deactive(id: number) {
         this.realStateService.findById(id).then(
             res => {
                 if (res) {
                     let realstate = res as RealState;
-                    realstate.status = false;
-                    this.realStateService.Update(realstate).then(
-                        res => {
-                            if (res == true) {
-                                this.ngOnInit();
-                            };
+                    let userid = realstate.usersellId;
+                    this.userService.findById(userid).then(
+                        res =>{
+                            let user: User = res as User;
+                            let email = user.email;
+                            this.userService.SendMail(this.content, this.title, email).then(
+                                res =>{
+                                    this.realStateService.Delete(id).then(
+                                        res =>{
+                                            this.visible = false;
+                                            setTimeout(() => {
+                                                this.ngOnInit();
+                                            }, 2000);     
+                                            this.messageService.add({ severity: 'success', summary: 'Success !', detail: 'Rejected Success !', key: 'tl', life: 2000 });        
+                                        },
+                                        err =>{
+                                            console.log(err);
+                                        }
+                                    )
+                                },
+                                err =>{
+                                    console.log(err);
+                                }
+                            )
                         },
-                        err => {
+                        err =>{
                             console.log(err);
                         }
-                    );
+                    )
                 }
             },
             err => {
@@ -129,12 +151,12 @@ export class RealStatecomponent implements OnInit {
         );
     }
 
-    SearchTitle(){
+    SearchTitle() {
         this.realStateService.searchByTitle(this.Searchtitle).then(
-            res =>{
+            res => {
                 this.realstates = res as RealState[];
             },
-            err =>{
+            err => {
                 console.log(err);
                 this.ngOnInit();
             }
