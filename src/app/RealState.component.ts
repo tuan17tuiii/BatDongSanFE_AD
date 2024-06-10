@@ -105,7 +105,7 @@ export class RealStatecomponent implements OnInit {
         );
     }
 
-    Show(){
+    Show() {
         this.visible = true;
     }
 
@@ -116,30 +116,30 @@ export class RealStatecomponent implements OnInit {
                     let realstate = res as RealState;
                     let userid = realstate.usersellId;
                     this.userService.findById(userid).then(
-                        res =>{
+                        res => {
                             let user: User = res as User;
                             let email = user.email;
                             this.userService.SendMail(this.content, this.title, email).then(
-                                res =>{
+                                res => {
                                     this.realStateService.Delete(id).then(
-                                        res =>{
+                                        res => {
                                             this.visible = false;
+                                            this.ngOnInit();
                                             setTimeout(() => {
-                                                this.ngOnInit();
-                                            }, 2000);     
-                                            this.messageService.add({ severity: 'success', summary: 'Success !', detail: 'Rejected Success !', key: 'tl', life: 2000 });        
+                                                this.messageService.add({ severity: 'success', summary: 'Success !', detail: 'Rejected Success !', key: 'tr', life: 2000 });
+                                            }, 500);
                                         },
-                                        err =>{
+                                        err => {
                                             console.log(err);
                                         }
                                     )
                                 },
-                                err =>{
+                                err => {
                                     console.log(err);
                                 }
                             )
                         },
-                        err =>{
+                        err => {
                             console.log(err);
                         }
                     )
