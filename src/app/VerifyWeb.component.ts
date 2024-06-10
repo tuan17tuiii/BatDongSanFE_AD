@@ -22,6 +22,7 @@ export class VerifyWebComponent implements OnInit {
       this.activatedRoute.paramMap.subscribe(p =>{
         let securityCode = p.get('securityCode');
         let username = p.get('username');
+        console.log(securityCode);
         this.userServices.Verify(securityCode, username).then(
           res =>{
             this.msg = 'Account verified successfully!'

@@ -32,6 +32,8 @@ import { Edit_catcomponent } from './Edit_cat.component';
 import { AgentsListcomponent } from './AgentList.component';
 import { EditAgentcomponent } from './EditAgent.component';
 import { AgentRequestcomponent } from './AgentRequest.component';
+import { ForgetPasswordComponent } from './ForgetPassword.component';
+import { ChangeForgetComponent } from './ChangeForget.component';
 
 
 export const routes: Routes = [
@@ -258,9 +260,16 @@ export const routes: Routes = [
         path: "Login",
         component: Logincomponet
     },
-
     {
         path: 'verify',
         component: VerifyWebComponent
+    },
+    {
+        path: 'forgetpassword',
+        component: ForgetPasswordComponent,
+    },
+    {
+        path: 'resetpassword',
+        component: ChangeForgetComponent
     },
 ];
