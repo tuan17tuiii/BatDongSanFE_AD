@@ -1,7 +1,7 @@
 export class Transaction{
-    Id: number;
-    IdUser: number;
-    IdAdv: number;
-    CreatedAt: string;
-    Price: number;
+    id: number;
+    idUser: number;
+    idAdv: number;
+    createdAt: string;
+    price: number;
 }

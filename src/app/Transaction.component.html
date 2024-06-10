@@ -1,6 +1,6 @@
 <style>
     .p-inputtext {
-        color: #4b5563;
+        color: #ffffff;
         background: #2A3038;
     }
 </style>
@@ -24,20 +24,20 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th>ID</th>
-                            <th>Buyer</th>
-                            <th>Seller</th>
-                            <th>Transaction Date</th>
-                            <th>Amount</th>
+                            <th>User</th>
+                            <th>Advertisement</th>
+                            <th>Price</th>
+                            <th>Created At</th>
                         </tr>
 
                     </ng-template>
                     <ng-template pTemplate="body" let-transaction>
                         <tr>
                             <td>{{transaction.id}}</td>
-                            <td>{{buyerNames[transaction.buyerId]}}</td>
-                            <td>{{sellerNames[transaction.sellerId]}}</td>
-                            <td>{{transaction.transactionDate}}</td>
-                            <td>{{transaction.amount}}</td>
+                            <td>{{User[transaction.idUser]}}</td>
+                            <td>{{ADS[transaction.idAdv]}}</td>
+                            <td>{{transaction.price}}</td>
+                            <td>{{transaction.createdAt}}</td>
                         </tr>
                     </ng-template>
                 </p-table>

@@ -41,9 +41,10 @@ export class Indexcomponet implements OnInit {
   admins: User[];
   realstates: RealState[];
   realstateTypes: RealstateType[];
-  buyerNames: { [key: number]: string } = {};
-  sellerNames: { [key: number]: string } = {};
+  User: { [key: number]: string } = {};
+  ADS: { [key: number]: string } = {};
   seller: { [key: number]: string } = {};
+  sellerNames: { [key: number]: string } = {};
   today: string = formatDate(new Date(), 'dd-MM-yyyy', 'en-US');
   countus: number = 0;
   countad: number = 0;
@@ -84,36 +85,37 @@ export class Indexcomponet implements OnInit {
   TransactionToday() {
     this.userServices.FindAll().then(
       res => {
-        let buyers: User[] = res as User[];
-        buyers.forEach(buyer => {
-          this.buyerNames[buyer.id] = buyer.username;
-        });
-        // Fetch seller names
-        this.userServices.FindAll().then(
-          res => {
-            let sellers: User[] = res as User[];
-            sellers.forEach(seller => {
-              this.sellerNames[seller.id] = seller.username;
-            });
-            // Fetch all transactions
-            this.transactionServices.Today(this.today).then(
+          let users: User[] = res as User[];
+          users.forEach(user => {
+              this.User[user.id] = user.username;
+          });
+          // Fetch all ads
+          this.adsServices.FindAll().then(
               res => {
-                this.transactions = res as Transaction[];
+                  let ads: ADs[] = res as ADs[];
+                  ads.forEach(ads =>{
+                      this.ADS[ads.id] = ads.advertisementName;
+                  });
+                  // Fetch all transactions
+                  this.transactionServices.Today(this.today).then(
+                      res => {
+                          console.log(res);
+                          this.transactions = res as Transaction[];
+                      },
+                      err => {
+                          console.log(err);
+                      }
+                  )
               },
               err => {
-                console.log(err);
+                  console.log(err);
               }
-            )
-          },
-          err => {
-            console.log(err);
-          }
-        )
+          )
       },
       err => {
-        console.log(err);
+          console.log(err);
       }
-    )
+  )
   }
 
   NumberOfUser() {

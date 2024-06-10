@@ -12,6 +12,8 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { ADsServices } from './Services/ADs.services';
+import { ADs } from './Entities/ADs.entities';
 
 @Component({
     selector: 'app-root',
@@ -23,32 +25,33 @@ import { RippleModule } from 'primeng/ripple';
     providers: [MessageService]
 })
 export class Transactioncomponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router, private userServices: UserServices, private messageService: MessageService) { }
+    constructor(private formBuilder: FormBuilder, private transactionServices: TransactionServices, private router: Router, private userServices: UserServices, private messageService: MessageService, private adsServices: ADsServices) { }
 
     transactions: Transaction[];
-    buyerNames: { [key: number]: string } = {};
-    sellerNames: { [key: number]: string } = {};
+    User: { [key: number]: string } = {};
+    ADS: { [key: number]: string } = {};
     From: string;
     To: string;
 
     ngOnInit() {
-        // Fetch buyer names
+        // Fetch user names
         this.userServices.FindAll().then(
             res => {
-                let buyers: User[] = res as User[];
-                buyers.forEach(buyer => {
-                    this.buyerNames[buyer.id] = buyer.username;
+                let users: User[] = res as User[];
+                users.forEach(user => {
+                    this.User[user.id] = user.username;
                 });
-                // Fetch seller names
-                this.userServices.FindAll().then(
+                // Fetch all ads
+                this.adsServices.FindAll().then(
                     res => {
-                        let sellers: User[] = res as User[];
-                        sellers.forEach(seller => {
-                            this.sellerNames[seller.id] = seller.username;
+                        let ads: ADs[] = res as ADs[];
+                        ads.forEach(ads =>{
+                            this.ADS[ads.id] = ads.advertisementName;
                         });
                         // Fetch all transactions
                         this.transactionServices.FindAll().then(
                             res => {
+                                console.log(res);
                                 this.transactions = res as Transaction[];
                             },
                             err => {
